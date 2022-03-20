@@ -1,0 +1,1790 @@
+---
+sidebar: auto
+---
+
+## H5C3
+
+### html5 调用系统拍照或者摄像
+
+```html
+<label>照相机</label>
+<input type="file" id="image" accept="image/*" capture="camera" />
+<br />
+<label>摄像机</label>
+<input type="file" id="video" accept="video/*" capture="camcorder" />
+```
+
+### **iframe 的使用**
+
+> 同源 iframe 可共享 localStorage、sessionStorage
+
+```html
+<iframe name="fm" src="index.html" style="width: 100%; heigth: 100%"></iframe>
+<!-- src 指向默认页面 -->
+```
+
+通过点击超链接
+
+```html
+<a href="home" target="fm">首页</a>
+<!-- target 属性指向特定的iframe -->
+```
+
+### hash 模式与 history 模式
+
+**hash 模式**
+
+> hsah 模式是一种把前端路由的路径用`#`拼接在真实的 URL 后面的模式。当`#`号后面的路径变化时，浏览器并不会重新发起请求，而是会触发`hashchange`事件。
+
+```html
+<a href="#/a"></a>
+<a href="#/b"></a>
+<div id="app"></div>
+<script>
+  function render() {
+    const app = document.querySelector("#app");
+    app.innerHTML = window.location.hash;
+  }
+  window.addEventListener("hashchange", render);
+</script>
+```
+
+**history 模式**
+
+> history API 是 h5 提供的新特性，允许开发者直接更改前端路由，即`更改前端路由而不重新发起网络请求`
+
+```html
+<a href="javascript: toA();">A页面</a>
+<a href="javascript: toB();">B页面</a>
+<div id="app"></div>
+<script>
+  function render() {
+    console.log("render");
+    app.innerHTML = window.location.pathname;
+  }
+  function ToA() {
+    history.pushState({}, null, "/a");
+    render();
+  }
+  function ToB() {
+    history.pushState({}, null, "/b");
+    render();
+  }
+  window.addEventListener("popState", render);
+</script>
+```
+
+### 超链接的一些实用属性
+
+**download** 属性表明当前链接用于下载。而不是跳转到例另外一个 URL。如果*download* 属性设置了值，表示下载的文件名。
+
+```html
+<a href="demo.html" download="demo.html">点击下载</a>
+```
+
+**邮件链接**
+
+```html
+<a href="mailto:1441036958@qq.com?subject=主题&body=邮件内容&cc=抄送&bcc=密送">
+  联系我们
+</a>
+```
+
+**电话链接**
+
+```html
+<a href="tel:18834177065">联系我</a>
+```
+
+## 使用标签元素触发隐藏文件输入元素
+
+> [MDN](https://developer.mozilla.org/en-US/docs/Web/API/File/Using_files_from_web_applications)
+
+```html
+<input
+  type="file"
+  id="fileElem"
+  multiple
+  accept="image/*"
+  class="visually-hidden"
+/>
+<label for="fileElem">Select some files</label>
+```
+
+```css
+.visually-hidden {
+  position: absolute !important;
+  height: 1px;
+  width: 1px;
+  overflow: hidden;
+  clip: rect(1px, 1px, 1px, 1px);
+}
+input.visually-hidden:focus + label {
+  outline: thin dotted;
+}
+input.visually-hidden:focus-within + label {
+  outline: thin dotted;
+}
+```
+
+> clip: rect(1px, 1px, 1px, 1px); 将编译成 left:1px; rigth: 1px; top: 1px; bottom:1px;
+
+### H5 新特性
+
+- 多媒体，用于媒介回放的 video 和 audio 元素
+- 图像效果，用于绘画的 canvas 元素，svg 元素等。
+- 离线&存储，对本地离线存储能够更好地支持，比如 localstorage,Cookies 等
+- 设备兼容特性
+- 语义化标签（nav、header、footer、aside）
+- 表单标签（Email、tel、password、color）
+- 地理位置
+
+### localStorage 与 sessionStorage 与 cookie 的区别总结
+
+- **共同的** ：都保存在浏览器端，且同源
+- **不同点**
+  - 传递的数据量不同，cookie 不能超过 4k，而 localStorage 与 sessionStorage 大小为 5M
+  - 传递方式不同，cookie 在浏览器和服务器间来回传递（即使不需要），而 localStorage 与 sessionStorage 不会自动把数据发给服务器，仅在本地保存。
+  - 生命周期不同:localStorage 永久保存, sessionStorage 当前会话, 都可手动清除，cookie 只在设置的 cookie 过期时间之前一直有效，即使窗口或浏览器关闭。
+  - 作用域不同 sessionStorage 不在不同的浏览器窗口中共享，即使是同一个页面；localStorage 在所有同源窗口中都是共享的；cookie 也是在所有同源窗口中都是共享的。
+
+### 前端网站常规优化方案
+
+- 合并、压缩、混淆 html/css/js 文件（webpack 实现，减小资源大小）
+- Nginx 开启 Gzip，进一步压缩资源（减小资源大小）
+- 图片资源使用 CDN 加速（提高加载速度）
+- 符合条件的图标做 base64 处理（减小资源大小）
+- 样式表放首部，JS 放尾部（JS 单线程，会阻塞页面；资源加载方式）
+- 设置缓存（强缓存和协商缓存，提高加载速度）
+- link 或者 src 添加 rel 属性，设置 prefetch 或 preload 可预加载资源。（加载时机）
+- 如果使用了 UI 组件库，采用按需加载（减小资源大小）
+- SPA 项目，通过 import 或者 require 做路由按需（减小资源大小）
+- 服务端渲染 SSR，加快首屏渲染，利于 SEO
+- 页面使用骨架屏，提高首页加载速度（提高加载速度）
+- 使用 JPEG 2000, JPEG XR, and WebP 的图片格式来代替现有的 jpeg 和 png，当页面图片较多时，这点作用非常明显
+- 使用图片懒加载-lazyload
+
+## javascript
+
+### 写 Javascript 的基本规范
+
+- 不要在一行申明多个变量
+- 使用 _===_ 或 _！==_ 来比较 true/false
+- switch 必须带有 default 分支
+- 函数应该返回值
+- for if else 必须使用大括号
+- 语句结束加分号
+- 命名要有意义，使用驼峰命名法
+
+### 浏览器渲染过程是怎么样的
+
+- 构建 DOM 树
+
+  DOM 树是 HTML 文档在浏览器中的对象表示。浏览器只有一个主线程负责解析 HTML，如果遇到`<script>`, 那么浏览器主线程暂停解析 HTML，然后开始加载 javaScript 文件并执行里面的代码，只有 js 代码执行完之后才会继续解析。对于图片和 css 文件、或者设置了 defer 或 asynch 的 js 文件，他们不会影响主线程，而是异步加载。
+
+  另外，浏览器有一个预扫描（Pre Scanner）线程，它会扫描 html 代码，提前把 css 文件、字体以及 js 文件下载下来，加速文件的下载，并且不会影响主线程。
+
+- 构建 CSSOM 树
+
+  CSSOM 是 css 在浏览器中的对象表示，也是树状结构
+
+- 合并 DOM 和 CSSDOM
+
+  浏览器会从 DOM 的根节点，合并 CSSOM 中的样式到每个节点，形成一颗渲染树（Render Tree）
+
+- 布局
+
+  生成渲染树之后，浏览器会根据样式，计算每个（没有设置 display: none ）的宽高和位置等，对所有节点进行布局规划。
+
+  对于像图片这样的节点，如果没有指定宽高，那么浏览器会先忽略它的大小，在图片加载完成之后，浏览器根据图片的宽高和位置，再次计算受影响的节点的宽高和位置，这个过程叫**回流**。
+
+- 绘制
+
+  在完成第一次布局以后，浏览器会把真正的节点和节点样式（例如背景、阴影、边框等）绘制到屏幕上，这个过程必须十分快速，否则会影响动画和交互的性能。如果之前的布局发生了回流，浏览器还会发生**重绘**，把变化的布局重新绘制到屏幕上。
+
+- 合并
+
+  这一步将绘制过程的分层合并，确保它们以正确的顺序绘制到屏幕上。
+
+### 分析 JS 与 CSS 是否阻塞 DOM 的渲染和解析
+
+- `CSS`不会阻塞`DOM`解析，但是会阻塞`DOM`渲染，严谨一点则是`CSS`会阻塞`render tree`的生成，进而会阻塞`DOM`的渲染
+- `JS`会阻塞`DOM`解析
+- `CSS`会阻塞`JS`的执行
+- 浏览器遇到`<script>`标签且没有`defer`或`async`属性时会触发页面渲染
+- `Body`内部的外链`CSS`较为特殊，请慎用
+
+### Js 数据类型如何判断
+
+- typeof 可以用此来判断`number`, `string`, `object`, `boolean`, `function`, `undefined` ，但是对于对象、数组、`null` 返回的值是 `object`
+- `instanceof`运算符用于检测构造函数的 `prototype`属性是否出现在某个实例对象的原型链上,返回值为布尔值，用于指示一个变量是否属于某个对象的实例。
+
+### instanceof 底层是如何工作的
+
+```js
+function instance_of(L, R) {
+  //L 表示左表达式，R 表示右表达式
+  var O = R.prototype; // 取 R 的显示原型
+  L = L.__proto__; // 取 L 的隐式原型
+  while (true) {
+    if (L === null) {
+      return false;
+    }
+    if (O === L) {
+      // 当 O 显式原型 严格等于  L隐式原型 时，返回true
+      return true;
+    }
+    L = L.__proto__;
+  }
+}
+```
+
+**调用方式**
+
+```js
+// per instanceof Person
+instance_of(per, Person);
+```
+
+### input 事件和 change 事件的区别
+
+input 输入框的 onchange 事件，要在 input 失去焦点的时候才会触发；
+
+在输入框内容变化的时候不会触发 change，当鼠标在其他地方点一下才会触发；
+
+onchange 事件也可用于单选框与复选框改变后触发的事件。
+
+### 简单数据类型和复杂数据类型的存储方式？
+
+- 简单数据类型存放到栈 Number、String、布尔类型(boolean)、null 、Symbol
+- 复杂数据类型存放到堆 Object function Set Map
+
+- 栈和堆的区别
+
+  - 栈：由编译器自动分配释放，存放函数的参数值，局部变量等
+  - 堆：一般由程序员分配释放，若程序员不释放，程序结束可能由操作系统释放
+
+### JavaScript 的作用域链
+
+当需要从局部函数查找某一属性或方法时，如果当前作用域没有找到，就会上溯到上层作用域查找，直至全局作用域，这种组织形式就是作用域链
+
+### 如何获取 Dom 元素？
+
+- _document.getElementById(‘id’)_ 通过 id 获取元素
+- _document.querySelect()_ 通过选择器获取元素
+- _document.querrySelectAll()_ 通过选择器获取一类元素，得到伪数组
+
+### 关于内存泄漏的几种情况
+
+> 少数的内存泄漏会影响性能，大量的内存泄漏会导致内存溢出，从而导致系统的奔溃。
+
+- 以外的全局变量
+
+- 闭包的错误使用
+
+- 没有及时清理的定时器
+
+- 不清理 DOM 元素的引用
+
+  ```js
+  const refA = document.getElementById("refA");
+  ducument.body.removeChild("refA");
+  console.log("refA", refA); // 虽然dom删除了，但是还存在引用
+  refA = null; // 解除引用
+  ```
+
+- 监听的事件没有及时解除
+
+  监听的时候 addEventListener, 在不监听的时候使用 removeEventListener
+
+### new 操作符具体干了什么
+
+- 创建了一个空对象
+
+  ```js
+  let obj = new Object();
+  ```
+
+- 设置原型链
+
+  ```js
+  obj.proto = Func.prototype;
+  ```
+
+- 改变 Func 中的 this 指向，并指向 Fun 函数体
+
+  ```js
+  let result = Func.call(this);
+  ```
+
+- 将创建的该对象返回
+
+### this 指向问题
+
+- 在普通函数中，this 指向 _window_
+- 在事件处理程序中，this 指向 _事件源_
+- 在构造函数中，this 指向 创建的对象
+- 在对象的方法中，this 指向当前方法所属的对象
+
+### **关于原型链**
+
+当查找一个对象的某个属性时，会先从它自身的属性上查找，如果找不到的话会从它的*proto*属性上查找，就是这个构造函数的 prototype 属性，如果还没找到就会一直往上层查找，直到到 null 还没有找到，则返回`undefined`，像这样一层一层去查找形成一个链式的称为原型链
+
+### **原生 javascript 的 dom 操作**
+
+**获取 dom 元素**
+
+```js
+var box = document.querySelector(".box");
+```
+
+**添加类名**
+
+```js
+box.classList.add("one");
+```
+
+**删除类名**
+
+```js
+box.classList.remove("one");
+```
+
+**设置属性**
+
+```js
+box.setAttribute("title", "哎呀，不错呀！！");
+```
+
+**获取属性**
+
+```js
+var title = box.getAttribute("title");
+console.log("得到的标题是：", title);
+```
+
+**创建 dom 元素**
+
+```js
+var li = document.createElement("li");
+```
+
+**给 _li_ 元素添加内容**
+
+```js
+li.innerHTML = "我是li的内容";
+```
+
+**将 _li_ 元素追加到 box**
+
+```js
+box.appendChild(li);
+```
+
+**将 box 里面的 li 元素删除掉**
+
+```js
+box.removeChild(li);
+```
+
+**操作 style 样式**
+
+```js
+box.style.backgroundColor = "red";
+```
+
+### 原生 javascript 的事件委托注册
+
+> 事件委托的原理是事件冒泡，常用于为页面中相同的元素注册事件
+
+在页面
+
+```html
+<ul>
+  <li>132</li>
+  <li>456</li>
+  <li>456</li>
+  <li>sahxj</li>
+  <li>sahxjsxh</li>
+</ul>
+```
+
+在 js 中
+
+```js
+document.querySelector("ul").addEventListener("click", function (e) {
+  if (e.target.tagName === "LI") {
+    console.log("事件源", e.target); // 用于指向事件源
+    console.log("事件源的父元素", e.target.parentNode); // 得到的结果是伪元素
+    console.log("事件源的子元素", e.target.childNodes); // 得到的结果是伪元素
+  }
+});
+```
+
+### 设置 element 的滚动条位置
+
+```js
+element.scrollTop = 0; // 设置 element 的滚动条位置居首
+element.scrollTop = element.scrollHeight; // 设置 element 的滚动条位置始终居底
+// 页面滚动
+document.body.scrollTop = 0;
+document.documentElement.scrollTop = 0;
+```
+
+### Event Loop(事件循环)
+
+> Javascript 是**单线程**，同一时间只能做一件事，原因是作为脚本语言，Javascript 是可以直接操作 DOM，而如果同时有两个线程操作 DOM，浏览器不知道如何进行处理，为了避免复杂性，Javascript 从诞生以来就一直都是单线程。为了充分利用 CPU，Javascript 将任务分为两种：一种是**同步任务**（synchronous）和**异步任务**（asynchronous），其中异步任务又分为两种：**(宏队列)macrotask**和 **(微队列)microtask** 。
+>
+> 因为 Javascript 单线程的特性，实际上很多需要耗时的任务，Javascript 都会把异步任务都放到`queue` 中，在主线程的事情做完后，会定期的轮询`queue` ，把里面的结果拿出来，这样循环往复的过程就构成了`Event Loop` 。比如：点击了一个元素，不会立刻的执行，但是等到 js 加载完毕后就会执行刚才点击的操作，能够知道有一个队列记录了所有有待执行的操作，这个队列分为微观和宏观。微观会比宏观执行得更快。
+
+```js
+// js 是单线程的，同一时间只能处理一段程序
+function Add() {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      console.log("promise 10");
+      resolve({ add: 123 });
+    });
+    console.log("Promise start");
+  });
+}
+console.log("start");
+Add().then((result) => {
+  console.log("promise end");
+});
+setTimeout(() => {
+  console.log("setTimeout");
+});
+console.log("end");
+// result:  start       Promise start       end          promise 10        promise end      setTimeout
+```
+
+### 0.1 + 0.2 === 0.3 嘛？为什么
+
+在两数相加时，会先转换成二进制，0.1 和 0.2 转换成二进制的时候尾数会发生无限循环，然后进行对阶运算，JS 引擎对二进制进行截断，所以造成精度丢失。
+
+> **总结：** 精度丢失可能出现在进制转换和对阶运算中
+
+### 实现函数能够深度克隆基本类型
+
+**递归的方法实现**
+
+```js
+function deepCopy(target) {
+  let newObj = {};
+  for (key in target) {
+    if (target[key] instanceof Array) {
+      // 如果是数组
+      newObj[key] = [];
+      newObj[key] = deepCopy(newObj[key], target[key]);
+    } else if (target[key] instanceof Object) {
+      // 如果是对象
+      newObj[key] = {};
+      newObj[key] = deepCopy(newObj, target[key]);
+    } else {
+      // 简单数据类型
+      newObj[key] = target[key];
+    }
+  }
+  return newObj;
+}
+let oldVal = { s1: 123, s2: [1, 2, 3] };
+let newVal = deepCopy(oldVal);
+newVal.s1 = 456;
+console.log("newVal", newVal, oldVal);
+```
+
+**深度克隆的其他方法：**
+
+JSON.stringify 转为字符串再 JSON.parse
+
+序列化深拷贝的缺点：
+
+- JSON.stringify() 会默认一处函数
+- 无法拷贝 Map、Set、 RegExp 这些特殊数据类型
+- 循环引用会报错
+
+### 原生 js 实现拍照
+
+在 html 中
+
+```html
+<video id="video" width="480" height="320" controls></video>
+<div>
+  <button id="capture">拍照</button>
+</div>
+<canvas id="canvas" width="480" height="320"></canvas>
+```
+
+在 js 中定义方法
+
+```js
+//访问用户媒体设备的兼容方法
+function getUserMedia(constraints, success, error) {
+  if (navigator.mediaDevices.getUserMedia) {
+    //最新的标准API
+    navigator.mediaDevices.getUserMedia(constraints).then(success).catch(error);
+  } else if (navigator.webkitGetUserMedia) {
+    //webkit核心浏览器
+    navigator.webkitGetUserMedia(constraints, success, error);
+  } else if (navigator.mozGetUserMedia) {
+    //firfox浏览器
+    navigator.mozGetUserMedia(constraints, success, error);
+  } else if (navigator.getUserMedia) {
+    //旧版API
+    navigator.getUserMedia(constraints, success, error);
+  }
+}
+function success(stream) {
+  //兼容webkit核心浏览器
+  let CompatibleURL = window.URL || window.webkitURL;
+  //将视频流设置为video元素的源
+  console.log(stream);
+  //video.src = CompatibleURL.createObjectURL(stream);
+  video.srcObject = stream;
+  video.play();
+}
+function error(error) {
+  console.log(`访问用户媒体设备失败${error.name}, ${error.message}`);
+}
+```
+
+调用
+
+```js
+let video = document.getElementById("video");
+let canvas = document.getElementById("canvas");
+let context = canvas.getContext("2d");
+if (
+  navigator.mediaDevices.getUserMedia ||
+  navigator.getUserMedia ||
+  navigator.webkitGetUserMedia ||
+  navigator.mozGetUserMedia
+) {
+  //调用用户媒体设备, 访问摄像头
+  getUserMedia({ video: { width: 480, height: 320 } }, success, error);
+  // 调用移动端后摄像头
+  getUserMedia(
+    { audio: true, video: { facingMode: { exact: "environment" } } },
+    success,
+    error
+  );
+} else {
+  alert("不支持访问用户媒体");
+}
+
+document.getElementById("capture").addEventListener("click", function () {
+  context.drawImage(video, 0, 0, 480, 320);
+  let imgBase64 = canvas.toDataURL("image/jpeg", 0.7);
+});
+```
+
+### **创建对象的方式**
+
+字面量的方式
+
+```js
+var obj = {};
+```
+
+_new Object()_ 的方式创建对象
+
+```js
+var obj = new Obect();
+```
+
+自定义构造函数创建对象
+
+```js
+function CreateHero(name, age, height) {
+  this.name = name;
+  this.age = age;
+  this.height = height;
+}
+```
+
+工厂的方式创建对象
+
+```js
+function create(name, age, height) {
+  var Ob = new Object();
+  Ob.name = name;
+  Ob.age = age;
+  Ob.height = height;
+  Ob.eat = function () {};
+  return Ob;
+}
+```
+
+### ES5 对 ES6 中的 let 和 const 的实现
+
+**let 的实现**
+
+```js
+function outputNum(count) {
+  //块级作用域
+  (function () {
+    for (var i = 0; i < count; i++) {
+      console.log(i);
+    }
+  })();
+  console.log(i); // i is not defined
+}
+outputNum(5);
+```
+
+**const 的实现**
+
+```jsx
+var __const = function __const(data, value) {
+  window.data = value; // 把要定义的data挂载到window下，并赋值value
+  Object.defineProperty(window, data, {
+    // 利用Object.defineProperty的能力劫持当前对象，并修改其属性描述符
+    enumerable: false,
+    configurable: false,
+    get: function () {
+      return value;
+    },
+    set: function (data) {
+      if (data !== value) {
+        // 当要对当前属性进行赋值时，则抛出错误！
+        throw new TypeError("Assignment to constant variable.");
+      } else {
+        return value;
+      }
+    },
+  });
+};
+__const("a", 10);
+console.log(a);
+delete a;
+console.log(a);
+for (let item in window) {
+  // 因为const定义的属性在global下也是不存在的，所以用到了enumerable: false来模拟这一功能
+  if (item === "a") {
+    // 因为不可枚举，所以不执行
+    console.log(window[item]);
+  }
+}
+a = 20; // 报错
+```
+
+### 获取 URL 参数的对象
+
+```js
+export function getURLParameters(url) {
+  const str = url.match(/([^?=&]+)(=([^&]*))/g) || [];
+  return str.reduce(
+    (a, v) => (
+      (a[decodeURIComponent(v.slice(0, v.indexOf("=")))] = decodeURIComponent(
+        v.slice(v.indexOf("=") + 1)
+      )),
+      a
+    ),
+    {}
+  );
+}
+```
+
+### 将键值对拼接成 URL 带参数
+
+```js
+export function fnParamsToUrl(obj) {
+  let aUrl = [];
+  let fnAdd = function (key, value) {
+    return key + "=" + value;
+  };
+  for (var k in obj) {
+    aUrl.push(fnAdd(k, obj[k]));
+  }
+  return encodeURIComponent(aUrl.join("&"));
+}
+```
+
+### 复制到剪切板
+
+```js
+const copyToClipboard = (text) => {
+  navigator.clipboard.writeText(text);
+};
+copyToClipboard("哈哈哈");
+```
+
+### URL 的编码与解码
+
+- 编码使用 encodeURI()函数---> 解码使用 decodeURI()函数
+- 编码使用 encodeURIComponent()函数 ---> 解码使用 decodeURIComponent()函数
+
+### 关于 FileReader
+
+> fileReader 是一种一部文件读取机制，结合 input:file 可以很方便地读取本地文件
+
+**创建 File Reader 对象**
+
+```js
+const fileReader = new FileReader();
+```
+
+**FileReader 对象的常用方法**
+
+- **readerAsArrayBuffer(file)** 按字节读取文件内容，结果为 ArrayBuffer 对象
+- **raederAsBinaryString(file)** 按字节读取文件内容，结果为二进制串
+- **raederAsDataUrl(file)** 结果为 base64 文件
+
+**案例**
+
+```html
+<input type="file" id="file" />
+```
+
+```js
+document.querySelector("#file").addEventListener("change", (fileList) => {
+  const file = fileList.target.files[0];
+  const fileReader = new FileReader();
+  fileReader.raederAsDataUrl(file);
+  fileReader.onload = function (e) {
+    console.log("base64文件", e.target.result);
+  };
+});
+```
+
+### 原生 js 实现给图片加水印
+
+**步骤一** 在 html 中
+
+```html
+<!-- 此div是用来输出结果的 -->
+<div id="container"></div>
+<button id="btn">点击</button>
+```
+
+**步骤二** 创建三个方法
+
+```js
+// 本地读取图像文件渲染到img标签
+function blobToImg(blob) {
+  return new Promise((resolve, reject) => {
+    let reader = new FileReader();
+    reader.addEventListener("load", () => {
+      let img = new Image();
+      img.src = reader.result;
+      img.addEventListener("load", () => resolve(img));
+    });
+    reader.readAsDataURL(blob);
+  });
+}
+// 将img标签内容绘制到canvas画布
+function imgToCanvas(img) {
+  let canvas = document.createElement("canvas");
+  canvas.width = img.width;
+  canvas.height = img.height;
+  let ctx = canvas.getContext("2d");
+  ctx.drawImage(img, 0, 0);
+  return canvas;
+}
+// canvas画布上绘制水印并转换为Blob对象
+function watermark(canvas, text) {
+  return new Promise((resolve, reject) => {
+    let ctx = canvas.getContext("2d");
+    // 设置填充字号和字体，样式
+    ctx.font = "24px 宋体";
+    ctx.fillStyle = "#FFC82C";
+    // 设置右对齐
+    ctx.textAlign = "right";
+    // 在指定位置绘制文字，这里指定距离右下角20坐标的地方
+    ctx.fillText(text, canvas.width - 20, canvas.height - 20);
+    canvas.toBlob((blob) => resolve(blob));
+  });
+}
+```
+
+**步骤三**图片添加水印
+
+```js
+function imgWatermark(dom, text) {
+  let input = document.createElement("input");
+  input.setAttribute("type", "file");
+  input.setAttribute("accept", "image/*");
+  input.onchange = async () => {
+    let img = await blobToImg(input.files[0]);
+    let canvas = imgToCanvas(img);
+    let blob = await watermark(canvas, text);
+    // 此处将Blob读取到img标签，并在dom内渲染出来；如果是上传文件，可以将blob添加到FormData中
+    let newImage = await blobToImg(blob);
+    dom.appendChild(newImage);
+  };
+  input.click();
+}
+```
+
+**步骤四** 调用
+
+```js
+let dom = document.querySelector("#container");
+let btn = document.querySelector("#btn");
+btn.addEventListener("click", function () {
+  imgWatermark(dom, "水印文字");
+});
+```
+
+### 原生 js 实现图片转 base64
+
+html 中写文件组件及按钮
+
+```html
+<input type="file" multiple id="file" />
+<button id="btn">点击获取base64</button>
+```
+
+在 js 中实现
+
+```js
+document.querySelector("#btn").addEventListener("click", function (e) {
+  let url = window.URL.createObjectURL(
+    document.querySelector("#file").files[0]
+  );
+  let imgobj = new Image();
+  imgobj.src = url;
+  let imgBaseStr = undefined;
+  imgobj.onload = function () {
+    imgBaseStr = getBase64Image(this);
+    console.log("base64 数据", imgBaseStr);
+  };
+});
+function getBase64Image(img) {
+  var canvas = document.createElement("canvas");
+  canvas.width = img.width;
+  canvas.height = img.height;
+  var ctx = canvas.getContext("2d");
+  //将图片绘制到canvas中
+  ctx.drawImage(img, 0, 0, img.width, img.height);
+  var ext = img.src.substring(img.src.lastIndexOf(".") + 1).toLowerCase();
+  //转换图片为dataURL
+  var dataURL = canvas.toDataURL("image/" + ext);
+  return dataURL;
+}
+```
+
+### 关于 reduce 函数的介绍
+
+- reduce 函数有两个参数
+  - 累加器函数
+  - 初始值
+- 累加器函数的参数说明
+  - 第一个参数表示 reduce 函数的初始值或者上一次回调的返回值
+  - 第二个参数表示当前要处理的值
+  - 第三个参数表示当前元素在数组中的索引
+  - 第四个参数表示调用 reduce 函数的数组本身
+- 初始值非必传函数
+
+**使用例子**
+
+```js
+// reduce累加
+let arr = [1, 2, 3, 4];
+arr.reduce((pre, cru, index, arr) => {
+  return pre + cru;
+}, 0);
+// result: 10
+
+// 获取arr的最大值
+arr.reduce((pre, cru, index, arr) => {
+  return Math.max(pre, cru);
+});
+// result: 4
+```
+
+### 原生 js 实现 base64 转 blob 对象
+
+**创建方法**
+
+```js
+function convertBase64UrlToImgFile(urlData, fileName, fileType) {
+  var bytes = window.atob(urlData);
+  var ab = new ArrayBuffer(bytes.length);
+  var ia = new Int8Array(ab);
+  var i;
+  for (i = 0; i < bytes.length; i++) {
+    ia[i] = bytes.charCodeAt(i);
+  }
+  var blob = new Blob([ab], { type: fileType });
+  blob.lastModifiedDate = new Date();
+  blob.name = fileName;
+  return blob;
+}
+```
+
+**调用方法**
+
+```js
+const base64 = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAA...";
+// 随机文件名
+const fileName = new Date().getTime() + ".jpeg";
+let imageURI = base64.split(",")[1];
+// 调用方法获取文件对象
+const imgfile = convertBase64UrlToImgFile(imageURI, fileName, "image/jpeg");
+```
+
+### 二维码相关
+
+**二维码的生成方法**
+
+```html
+<!-- 引入JQuery -->
+<script
+  type="text/javascript"
+  src="http://static.runoob.com/assets/jquery/2.0.3/jquery.min.js"
+></script>
+
+<!-- 引入qrcodjs库 -->
+<script
+  type="text/javascript"
+  src="http://static.runoob.com/assets/qrcode/qrcode.min.js"
+></script>
+
+<!-- 使用 -->
+<input id="text" type="text" value="http://www.runoob.com" style="width:80%" />
+<br />
+<div id="qrcode" style="width:100px; height:100px; margin-top:15px;"></div>
+
+<script type="text/javascript">
+  var qrcode = new QRCode(document.getElementById("qrcode"), {
+    width: 100,
+    height: 100,
+    colorDark: "#000000",
+    colorLight: "#ffffff",
+    correctLevel: QRCode.CorrectLevel.H,
+  });
+
+  function makeCode() {
+    var elText = document.getElementById("text");
+
+    if (!elText.value) {
+      alert("Input a text");
+      elText.focus();
+      return;
+    }
+
+    qrcode.makeCode(elText.value);
+  }
+
+  makeCode();
+  let text = document.querySelector("#text");
+  text.addEventListener("blur", function () {
+    makeCode();
+  });
+  text.addEventListener("keydown", function (e) {
+    if (e.keyCode == 13) {
+      makeCode();
+    }
+  });
+</script>
+```
+
+**二维码的解析**
+
+```html
+<!-- 引入jsQr库 -->
+<script src="https://cozmo.github.io/jsQR/jsQR.js"></script>
+<script>
+  let canvas = document.createElement("canvas");
+  canvas.setAttribute("id", "qrcanvas");
+  document.querySelector("body").append(canvas);
+  document
+    .querySelector("#pictureChange")
+    .addEventListener("change", function (e) {
+      let file = e.target.files[0];
+      if (window.FileReader) {
+        let fr = new FileReader();
+        fr.readAsDataURL(file);
+        fr.onloadend = function (ev) {
+          let base64Data = ev.target.result;
+          base64ToqR(base64Data);
+        };
+      }
+    });
+  function base64ToqR(data) {
+    var c = document.getElementById("qrcanvas");
+    var ctx = c.getContext("2d");
+    var img = new Image();
+    img.src = data;
+    img.onload = function () {
+      let qrcanvas = document.querySelector("#qrcanvas");
+      qrcanvas.setAttribute("width", img.width);
+      qrcanvas.setAttribute("height", img.height);
+      ctx.drawImage(img, 0, 0, img.width, img.height);
+      var imageData = ctx.getImageData(0, 0, img.width, img.height);
+      const code = jsQR(imageData.data, imageData.width, imageData.height, {
+        inversionAttempts: "dontInvert",
+      });
+      if (code) {
+        showCode(code.data);
+      } else {
+        alert("识别错误");
+      }
+    };
+  }
+  function showCode(code) {
+    let alink = document.createElement("a");
+    alink.setAttribute("href", code);
+    alink.click();
+  }
+</script>
+```
+
+### 数组转树形数组的方法
+
+**定义方法**
+
+```js
+function totree(list, parId) {
+  let obj = {};
+  let result = [];
+  list.map((el) => {
+    obj[el.id] = el;
+  });
+  for (let i = 0, len = list.length; i < len; i++) {
+    let id = list[i].parentId;
+    if (id == parId) {
+      result.push(list[i]);
+      continue;
+    }
+    if (obj[id].children) {
+      obj[id].children.push(list[i]);
+    } else {
+      obj[id].children = [list[i]];
+    }
+  }
+  return result;
+}
+```
+
+**调用方法**
+
+```js
+let arr = [
+  { id: 2, name: "部门B", parentId: 0 },
+  { id: 3, name: "部门C", parentId: 1 },
+  { id: 1, name: "部门A", parentId: 2 },
+  { id: 4, name: "部门D", parentId: 1 },
+  { id: 5, name: "部门E", parentId: 2 },
+  { id: 6, name: "部门F", parentId: 3 },
+  { id: 7, name: "部门G", parentId: 2 },
+  { id: 8, name: "部门H", parentId: 4 },
+];
+let res1 = totree(arr, 0);
+```
+
+### 数组的常用方法
+
+- _join(separator)_ 将数组的元素组起一个字符串
+- _push()_ 追加数组元素，将其放在数组的最后一个位置，并增加数组的长度
+- _pop()_ 数组末尾移除最后一项，减少数组的 length 值，然后返回移除的项。
+- _shift()_ 删除原数组第一项，并返回删除元素的值；如果数组为空则返回 undefined 。
+- _unshift()_ 将参数添加到原数组开头，并返回数组的长度 。
+- _splice(index, length)_ 删除数组中的元素，参数一：删除的开始位置，参数二：删除数组元素的条目数
+- _forEach()_ 对数组进行遍历循环，对数组中的每一项运行给定函数。这个方法没有返回值。参数都是 function 类型，默认有传参，参数分别为：遍历的数组内容；第对应的数组索引，数组本身。
+- _map()_ 循环遍历数组 参数是一个函数，该函数的第一个参数是 item 表示遍历项目，第二个参数是遍历项的索引,第三个参数循环项本身
+
+### javascript 中 Object 常用方法使用总结
+
+- Object 构造函数继承
+
+  只有构造函数才有 prototype 属性
+
+  js 每个对象都有一个**proto**属性 === 构造函数的 prototype 属性
+
+  ```js
+  function conObj() {}
+  conObj.prototype.age = "12";
+  let newPreObj = new conObj();
+  console.log(newPreObj.age); // 12
+  console.log(newPreObj.__proto__ === conObj.prototype); // true
+  ```
+
+- Object.assgin()
+
+  用于将一个或者多个对象的可枚举的值从源对象复制到目标对象。返回目标对象
+
+  ```js
+  let target = { name: "xiaomin" };
+  let source = { age: "14", name: "hua" };
+  const finalObj = Object.assign(target, source);
+  console.log(target, finalObj); // {name: 'hua', age: '14'}
+  ```
+
+- Object.defineProperty()
+
+  用于直接在一个对象上定义一个新属性，或者修改一个对象的现有属性，并返回此对象
+
+- Object.keys()、Object.values()
+
+  Object.keys()返回一个指定对象可枚举属性的属性名组成的数组
+
+  Object.values()返回一个指定对象可枚举属性的属性值组成的数组
+
+  ```js
+  let myObj = { name: "xioamin", age: "12" };
+  console.log(Object.keys(myObj)); // ["name", "age"]
+  console.log(Object.values(myObj)); // ["xiaomin", "12"]
+  ```
+
+### 获取文件对象的 blob
+
+```js
+const blob = window.URL.createObjectURL(this.$refs.file.files[0]);
+// this.$refs.file.files[0] 为文件的文件对象
+```
+
+js 原生用法
+
+```js
+// 获取表单对象
+var form = document.querySelector(".form")
+// 为表单对象设置提交事件
+form.addEventListener("submit", (e) => {
+    // 阻止表单默认提交行为
+    e.preventDefault()
+    // 获取文件对象
+    var file = document.querySelector(".file").files[0]
+    // 获取blob数据
+    var blob = window.URL.createObjectURL(file)
+    // 创建formdata对象
+    var fd = new FormData()
+    // 追加提交属性
+    fd.append("file", blob)
+    // 查看formdata对象
+    console.log(fd.get('file'))
+}
+```
+
+### 生成 xlsx 文件
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>导出表格</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <table
+      id="table"
+      style="border: 1px solid #ccc; border-collapse: collapse;"
+    >
+      <tr style="height: 50px;">
+        <th style="width: 100px; color: red; border: 1px solid #ccc;">姓名</th>
+        <th style="border: 1px solid #ccc;">性别</th>
+        <th style="border: 1px solid #ccc;">年龄</th>
+      </tr>
+      <tr>
+        <td style="border: 1px solid #ccc;">小米</td>
+        <td style="border: 1px solid #ccc;">男</td>
+        <td style="border: 1px solid #ccc;">16</td>
+      </tr>
+    </table>
+    <script>
+      let html = `
+      <!DOCTYPE html>
+      <html lang="en">
+      <head>
+        <meta charset="UTF-8">
+      </head>
+      <body>
+        ${document.getElementById("table").outerHTML}
+      </body>
+      </html>
+    `;
+      let blob = new Blob([html], { type: "application/vnd.ms-excel" });
+      const url = URL.createObjectURL(blob);
+    </script>
+  </body>
+</html>
+```
+
+### 加入收藏夹
+
+```js
+function addFavorite(sURL, sTitle) {
+  try {
+    window.external.addFavorite(sURL, sTitle);
+  } catch (e) {
+    try {
+      window.sidebar.addPanel(sTitle, sURL, "");
+    } catch (e) {
+      alert("加入收藏失败，请使用Ctrl+D进行添加");
+    }
+  }
+}
+```
+
+### 压缩 CSS 样式代码
+
+```js
+function compressCss(s) {
+  //压缩代码
+  s = s.replace(/\/\*(.|\n)*?\*\//g, ""); //删除注释
+  s = s.replace(/\s*([\{\}\:\;\,])\s*/g, "$1");
+  s = s.replace(/\,[\s\.\#\d]*\{/g, "{"); //容错处理
+  s = s.replace(/;\s*;/g, ";"); //清除连续分号
+  s = s.match(/^\s*(\S+(\s+\S+)*)\s*$/); //去掉首尾空白
+  return s == null ? "" : s[1];
+}
+```
+
+### 字符串常用的方法
+
+- _split()_ 用于将字符串按照某个分隔符分隔，得到一个数组
+
+  ```js
+  var myStr = "I,Love,You,Do,you,love,me";
+  var substrArray = myStr.split(","); // ["I", "Love", "You", "Do", "you", "love", "me"];
+  ```
+
+- _str.length()_ 用于计算字符串长度
+
+- _indexOf()_ 用于查找某个字符在字符串中的位置
+
+- 常用的转换为大写或者小写字符串函数，如下：
+
+  ```js
+  var myStr = "I,love,you,Do,you,love,me";
+  var lowCaseStr = myStr.toLowerCase();
+  //"i,love,you,do,you,love,me"
+  var upCaseStr = myStr.toUpperCase();
+  //"I,LOVE,YOU,DO,YOU,LOVE,ME"
+  ```
+
+- _字符串切割和提取_
+
+  有三种可以从字符串中抽取和切割的方法，如：
+
+  第一种，使用 slice():
+
+  > 语法：slice(start, [end])
+
+  ```js
+  var myStr = "I,love,you,Do,you,love,me";
+  var subStr = myStr.slice(1, 5); //",lov"
+  ```
+
+  第二种，使用 substring():
+
+  > 语法： substring(start, [end])
+
+  ```js
+  var myStr = "I,love,you,Do,you,love,me";
+  var subStr = myStr.substring(1, 5); //",lov"
+  ```
+
+  第三种，使用 substr():
+
+  > 语法: subsrt(index, [length])
+
+  ```js
+  var myStr = "I,love,you,Do,you,love,me";
+  var subStr = myStr.substr(1, 5); //",love"
+  ```
+
+  与第一种和第二种不同的是，substr()第二个参数代表截取的字符串最大长度，如上结果所示
+
+- _replace()_ 用于字符串的替换
+
+  ```js
+  var myStr = "I,love,you,Do,you,love,me";
+  var replacedStr = myStr.replace(/love/g, "hate");
+  ```
+
+- _charAt(8)_ 查找给定位置的字符或其字符编码值
+
+  ```js
+  var myStr = "I,love,you,Do,you,love,me";
+  var theChar = myStr.charAt(8); // "o",同样从0开始
+  ```
+
+### 事件的组成以及执行是什么？
+
+- 事件的组成：事件源、事件类型、事件处理函数
+- 在 js 中绑定的事件默认执行时间是在冒泡阶段执行，而非在捕获阶段
+
+### 如何阻止事件的冒泡？如何阻止时间的默认行为？
+
+- 阻止事件冒泡 _event.stopPropagation()_
+- 阻止默认行为 _event.preventDefault()_
+
+### 事件委托的原理是什么？
+
+- 事件冒泡
+- 当事件冒泡到上级元素时会被上级监听并捕获，可以通过 e.target 找到事件源
+
+### JQuery 的两大特点是什么
+
+- 链式编程
+- 隐式迭代
+
+### 一段范围内的随机数
+
+```js
+function GetRandomNum(Min, Max) {
+  var Range = Max - Min;
+  var Rand = Math.random();
+  return Min + Math.round(Rand * Range);
+}
+var num = GetRandomNum(1, 10);
+```
+
+### 获取随机字符串
+
+```js
+var chars = [
+  "0",
+  "1",
+  "2",
+  "3",
+  "4",
+  "5",
+  "6",
+  "7",
+  "8",
+  "9",
+  "A",
+  "B",
+  "C",
+  "D",
+  "E",
+  "F",
+  "G",
+  "H",
+  "I",
+  "J",
+  "K",
+  "L",
+  "M",
+  "N",
+  "O",
+  "P",
+  "Q",
+  "R",
+  "S",
+  "T",
+  "U",
+  "V",
+  "W",
+  "X",
+  "Y",
+  "Z",
+];
+
+function generateMixed(n) {
+  var res = "";
+  for (var i = 0; i < n; i++) {
+    var id = Math.ceil(Math.random() * (chars.length - 1));
+    res += chars[id];
+  }
+  return res;
+}
+```
+
+### 变量提升
+
+> ES6 之前我们一般使用 var 来声明变量，提升简单来说就是把我们所写的类似于 var a = 123;这样的代码，声明提升到它所在作用域的顶端去执行，到我们代码所在的位置来赋值。
+
+```js
+function test() {
+    console.log(a);
+    var a = 123;
+}
+test(); // undefined
+// 它的实际执行顺序如下：
+function test() {
+    vat a;
+    console.log(a);
+    a = 123;
+}
+```
+
+下面来看一道经典面试题：
+
+```js
+console.log(a);
+var a = 100;
+function foo() {
+  console.log(a);
+  var a = 200;
+  console.log(a);
+}
+foo();
+console.log(a);
+// result: undefined undefined 200 100
+```
+
+**函数提升**
+
+```js
+console.log(bar)
+function bar() {
+    console.log(123)
+}
+// result: f bar() {console.log(123) }
+执行顺序相当于：
+function bar() {
+    console.log(123);
+}
+console.log(bar);
+```
+
+函数提升是整个代码块提升到它所在的作用域的最开始执行, 这就是**函数优先规则**
+
+```js
+foo();
+var foo;
+function foo() {
+  console.log(1);
+}
+foo = function () {
+  console.log(2);
+};
+// result: 1
+```
+
+### 防抖与节流
+
+**防抖**
+
+```js
+var timer = null
+function debounce(){
+    if(timer) clearTimeout(timer);
+    timer = setTimeout(()=>{
+        ...
+        timer = false
+    },100)
+}
+debounce()
+```
+
+**节流**
+
+```js
+let canRun = true;
+document.getElementById("throttle").onscroll = function () {
+  if (!canRun) {
+    // 判断是否已空闲，如果在执行中，则直接return
+    return;
+  }
+  canRun = false;
+  setTimeout(function () {
+    console.log("函数节流");
+    canRun = true;
+  }, 1000);
+};
+```
+
+**防抖与节流的异同**
+
+防抖与节流都是希望在同一时间内，不要重复触发请求。
+
+防抖主要是在规定的时间内只触发一次，如果再次调用，事件重新计时
+
+节流是要是在规定的时间内只触发一次
+
+### 数组扁平化的方式
+
+**方法一：**
+
+```js
+const arr = [1, [2, [3, [4, 5]]], 6];
+//  方法一：数组自带的扁平化方法,flat的参数代表的是需要展开几层，如果是Infinity的话，就是不过嵌套几层，全部都展开
+console.log(arr.flat(Infinity));
+```
+
+**方法二**
+
+```js
+const newArr = (arr) => {
+  return arr.reduce((pre, cur) => {
+    return pre.concat(Array.isArray(cur) ? newArr(cur) : cur);
+  }, []);
+};
+console.log(newArr(arr), "reduce方法");
+```
+
+## JQuery
+
+### jQuery 获取元素的兄弟节点的几种方法
+
+```js
+$("#id").siblings(); // 当前元素所有的兄弟节点
+$("#id").prev(); // 当前元素前一个兄弟节点
+$("#id").prevaAll(); // 当前元素之前所有的兄弟节点
+$("#id").next(); // 当前元素之后第一个兄弟节点
+$("#id").nextAll(); // 当前元素之后所有的兄弟节点
+```
+
+### width 方法与 height 方法
+
+```js
+// 带参数表示设置高度
+$("img").height(200);
+// 不带参数获取高度
+$("img").height();
+```
+
+### jQuery 操作属性
+
+**attr 操作**
+
+```js
+// 设置单个属性
+$("img").attr("alt", "哎哟，不错哦");
+// 同时设置多个属性
+$("img").attr({
+  title: "哎哟，不错哦",
+  alt: "哎哟，不错哦",
+  style: "opacity:.5",
+});
+```
+
+**prop 操作**
+
+```js
+// 在jQuery1.6之后，对于checked、selected、disabled这类boolean类型的属性来说，不能用attr方法，只能用prop方法。
+// 设置属性
+$(":checked").prop("checked", true);
+// 获取属性
+$(":checked").prop("checked"); // 返回true或者false
+```
+
+### jQuery 操作样式
+
+**CSS 操作**
+
+```js
+// 获取单个样式
+$("#one").css("background", "gray"); // 将背景色修改为灰色
+// 获取多个样式
+$("#one").css({
+  background: "gray",
+  width: "400px",
+  height: "200px",
+});
+```
+
+**class 操作**
+
+```js
+// 添加样式类
+$("div").addClass("one");
+// 移除样式类
+$("div").removeClass("one");
+// 判断是否有某个样式类
+$("div").hasClass("one");
+// 切换样式类
+$("div").toggleClass("one");
+```
+
+### jQuery 的节点操作
+
+**append()** 父元素将子元素追加到末尾
+
+```js
+$("#father").append($(".son")); // 将son添加到father元素内部，并且在末尾
+```
+
+**prepend()** 父元素将子元素追加到开头
+
+```js
+$("#father").prepend($(".son")); // 将son添加到father元素内部，并且在开头
+```
+
+**appendTo()** 将子元素添加到父元素的末尾
+
+```js
+$(".son").appendTo($(".father")); // 将son添加到father内部，并且在末尾
+```
+
+**prependTo()** 将子元素添加到父元素的开头
+
+```js
+$(".son").prependTo($(".father")); // 将son添加到father内部，并且在开头
+```
+
+**remove()** 移除元素
+
+```js
+$(".one").remove(); // 将对象删除掉
+```
+
+**empty()** 清空元素的所有后代元素。
+
+```js
+$(".one").empty(); // 将对象的后代元素全部清空，但是保留当前对象以及其属性节点
+```
+
+### jQuery 筛选选择器(方法)
+
+| 名称               | 用法                        | 描述                                |
+| ------------------ | --------------------------- | :---------------------------------- |
+| children(selector) | $('ul').children('li')      | 相当于$('ul>li')，子类选择器        |
+| find(selector)     | $('ul').find('li');         | 相当于$('ul li'),后代选择器         |
+| siblings(selector) | $('#first').siblings('li'); | 查找兄弟节点，不包括自己本身。      |
+| parent()           | $('#first').parent();       | 查找父亲                            |
+| eq(index)          | $('li').eq(2);              | 相当于$('li:eq(2)'),index 从 0 开始 |
+| next()             | $('li').next()              | 找下一个兄弟                        |
+| prev()             | $('li').prev()              | 找上一次兄弟                        |
+
+如何快速收集 form 表单数据
+
+```js
+使用$(form表单).serialize()快速收集表单信息。
+注意：
+- 在使用serialize()收集表单数据时，必须为每个表单元素添加name属性，并且属性值一定要和接口中定义的参数名称相同。
+- 通过serialize()获取到的数据是查询字符串的格式，不能用来提交文件。
+```
+
+### 关于正则表达式
+
+| 代码 |      类       |                    说明                    |
+| :--: | :-----------: | :----------------------------------------: |
+|  .   |               |         匹配除换行符以外的任意字符         |
+|  \w  | [a-zA-Z0-0_]  |           匹配字母或数字或下划线           |
+|  \s  | [\f\r\n\t\v]  |              匹配任意的空白符              |
+|  \d  |     [0-9]     |                  匹配数字                  |
+|  \D  |    [^0-9]     |                                            |
+|  \b  |               |            匹配单词的开始或结束            |
+|  ^   |               |                匹配行的开始                |
+|  $   |               |                匹配行的结束                |
+|  \W  | [^a-za-z0-0_] | 匹配任意不是数字、字母或者下划线的汉字字符 |
+|  \S  | [^\f\r\n\t\v] |           匹配任意不是空白的字符           |
+
+**常用重复限定符**
+
+| 代码   | 说明                |
+| ------ | ------------------- |
+| \*     | 重复零次或更多次    |
+| +      | 重复一次或更多次    |
+| ？     | 重复零次或一次      |
+| {n}    | 重复 n 次           |
+| {n,}   | 重复 n 次或者更多次 |
+| {n, m} | 重复 n 到 m 次      |
+
+### 正则表达式分组
+
+> 通俗来说，分组就是在正则表达式中用（）包起来的内容代表了一个分组
+
+**案例一**
+
+```js
+var reg = /(\d{4})-(\d{2})-(\d{2})/;
+var dateStr = "2018-04-18";
+reg.test(dateStr); //true
+RegExp.$1; //2018
+RegExp.$2; //04
+RegExp.$3; //18
+```
+
+**案例二**
+
+```js
+var dateStr = "2018/04/18";
+var reg = /(\d{4})\/(\d{2})\/(\d{2})/;
+dateStr = dateStr.replace(reg, "$1-$2-$3"); // "2018-04-18"
+```
+
+**案例三：**
+
+> 使用正则分组实现字符串的驼峰命名
+
+```js
+function toHumpName(str) {
+  let reg = /\_(\w)/g;
+  return str.replace(reg, ($0, $1) => {
+    return $1.toUpperCase();
+  });
+}
+let str = "border_top_color";
+console.log(toHumpName(str)); // result: borderTopColor
+```
+
+也可以使用其他方法
+
+```js
+function toHumpName(str) {
+  let arr = str.split("_");
+  for (let i = 1; i < arr.length; i++) {
+    arr[i] = arr[i].charAt(0).toUpperCase() + arr[i].substring(1);
+  }
+  return arr.join("");
+}
+```
+
+### JavaScript 正则表达式的方法
+
+**match()**
+
+方法返回 3 个可能的值：
+
+- 如果正则表达式包含一个 g 标记，即为全局匹配，它将返回一个包含所有匹配项的数组，没捕获组信息；
+- 如果正则表达式没有 g 标记，它将返回一个包含第一个匹配项和其相关的捕获组的数组；
+- 如果根本没有匹配项，则返回 null 。
+
+```js
+const strText = "Hello China";
+const regex = /[A-Z]/g; // 大写字母正则表达式
+console.log(strText.match(regex)); // [ 'H', 'C' ]
+```
+
+**test()**
+
+test() 用于测试指定字符串和正则表达式之间是否匹配，接受一个字符串作为其参数，并根据是否匹配返回 true 或 false 。
+
+```js
+const strText = "hello china";
+const regex = /china/;
+console.log(regex.test(strText)); // true
+```
+
+**search()**
+
+search() 方法是一个字符串方法，用于在字符串中搜索匹配项, 方法返回第一个匹配项在整个字符串中的位置（索引），如果没有匹配项，则返回 -1。
+
+```js
+const strText = "hello china，i love china";
+const regex = /china/;
+console.log(strText.search(regex)); // 6
+```
+
+**replace()**
+
+replace() 是在字符串中搜索指定的值或正则表达式并将其替换为另一个值
+
+```js
+const strText = "hello world,i love world";
+const regex = /world/;
+console.log(strText.replace(regex, "china")); // hello china,i love world
+```
+
+**replaceAll()**
+
+replaceAll() 类似于方法 replace() ，但它允许替换字符串中所有匹配的值或正则表达式。
+
+```js
+const strText = "hello world,i love world";
+console.log(strText.replaceAll("world", "china")); // hello china,i love china
+```
+
+等效于如下代码：
+
+```js
+const strText = "hello world,i love world";
+const regex = /world/g;
+console.log(strText.replaceAll(regex, "china")); // hello china,i love china
+```
