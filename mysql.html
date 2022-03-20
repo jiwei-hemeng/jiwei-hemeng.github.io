@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>常用的mysql语句 | Hello VuePress</title>
+    <meta name="generator" content="VuePress 1.9.7">
+    
+    <meta name="description" content="Just playing around">
+    
+    <link rel="preload" href="/assets/css/0.styles.e4d8b86b.css" as="style"><link rel="preload" href="/assets/js/app.6443168d.js" as="script"><link rel="preload" href="/assets/js/2.c004a395.js" as="script"><link rel="preload" href="/assets/js/17.c32949c2.js" as="script"><link rel="prefetch" href="/assets/js/10.5a6b3cf3.js"><link rel="prefetch" href="/assets/js/11.58e01be6.js"><link rel="prefetch" href="/assets/js/12.87cfbe9d.js"><link rel="prefetch" href="/assets/js/13.a9b7d1ab.js"><link rel="prefetch" href="/assets/js/14.3fc22dc9.js"><link rel="prefetch" href="/assets/js/15.db8474c7.js"><link rel="prefetch" href="/assets/js/16.4948a94b.js"><link rel="prefetch" href="/assets/js/18.9bc565d1.js"><link rel="prefetch" href="/assets/js/19.a46de05c.js"><link rel="prefetch" href="/assets/js/20.7bbe468a.js"><link rel="prefetch" href="/assets/js/21.991dfd9b.js"><link rel="prefetch" href="/assets/js/22.70e2c5ef.js"><link rel="prefetch" href="/assets/js/23.c465cffa.js"><link rel="prefetch" href="/assets/js/24.e8a81961.js"><link rel="prefetch" href="/assets/js/25.2c121615.js"><link rel="prefetch" href="/assets/js/3.b462c5ec.js"><link rel="prefetch" href="/assets/js/4.b552b4ea.js"><link rel="prefetch" href="/assets/js/5.9c861387.js"><link rel="prefetch" href="/assets/js/6.916f169b.js"><link rel="prefetch" href="/assets/js/7.1145d7e7.js"><link rel="prefetch" href="/assets/js/8.9324c43d.js"><link rel="prefetch" href="/assets/js/9.9e72a500.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.e4d8b86b.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><!----> <span class="site-name">Hello VuePress</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/" class="nav-link">
+  首页
+</a></div><div class="nav-item"><a href="/ES6.html" class="nav-link">
+  ES6
+</a></div><div class="nav-item"><a href="/closure.html" class="nav-link">
+  闭包
+</a></div><div class="nav-item"><a href="/extends.html" class="nav-link">
+  继承
+</a></div><div class="nav-item"><a href="/network.html" class="nav-link">
+  网络请求
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Vue" class="dropdown-title"><span class="title">Vue</span> <span class="arrow down"></span></button> <button type="button" aria-label="Vue" class="mobile-dropdown-title"><span class="title">Vue</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/vuex.html" class="nav-link">
+  Vuex
+</a></li><li class="dropdown-item"><!----> <a href="/vue3.0.html" class="nav-link">
+  Vue3.0
+</a></li><li class="dropdown-item"><!----> <a href="/uni-app.html" class="nav-link">
+  uniApp
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="React" class="dropdown-title"><span class="title">React</span> <span class="arrow down"></span></button> <button type="button" aria-label="React" class="mobile-dropdown-title"><span class="title">React</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/react.html" class="nav-link">
+  React
+</a></li><li class="dropdown-item"><!----> <a href="/react-redux.html" class="nav-link">
+  ReactRedux
+</a></li><li class="dropdown-item"><!----> <a href="/React-virtualized.html" class="nav-link">
+  可视区域渲染
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="工具" class="dropdown-title"><span class="title">工具</span> <span class="arrow down"></span></button> <button type="button" aria-label="工具" class="mobile-dropdown-title"><span class="title">工具</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/Git.html" class="nav-link">
+  Git
+</a></li><li class="dropdown-item"><!----> <a href="/webpack.html" class="nav-link">
+  webpack
+</a></li><li class="dropdown-item"><!----> <a href="/moment.html" class="nav-link">
+  moment
+</a></li><li class="dropdown-item"><!----> <a href="/mysql.html" aria-current="page" class="nav-link router-link-exact-active router-link-active">
+  mysql
+</a></li></ul></div></div><div class="nav-item"><a href="/websocket.html" class="nav-link">
+  webSocket
+</a></div><div class="nav-item"><a href="/nodejs.html" class="nav-link">
+  Node
+</a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/" class="nav-link">
+  首页
+</a></div><div class="nav-item"><a href="/ES6.html" class="nav-link">
+  ES6
+</a></div><div class="nav-item"><a href="/closure.html" class="nav-link">
+  闭包
+</a></div><div class="nav-item"><a href="/extends.html" class="nav-link">
+  继承
+</a></div><div class="nav-item"><a href="/network.html" class="nav-link">
+  网络请求
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Vue" class="dropdown-title"><span class="title">Vue</span> <span class="arrow down"></span></button> <button type="button" aria-label="Vue" class="mobile-dropdown-title"><span class="title">Vue</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/vuex.html" class="nav-link">
+  Vuex
+</a></li><li class="dropdown-item"><!----> <a href="/vue3.0.html" class="nav-link">
+  Vue3.0
+</a></li><li class="dropdown-item"><!----> <a href="/uni-app.html" class="nav-link">
+  uniApp
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="React" class="dropdown-title"><span class="title">React</span> <span class="arrow down"></span></button> <button type="button" aria-label="React" class="mobile-dropdown-title"><span class="title">React</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/react.html" class="nav-link">
+  React
+</a></li><li class="dropdown-item"><!----> <a href="/react-redux.html" class="nav-link">
+  ReactRedux
+</a></li><li class="dropdown-item"><!----> <a href="/React-virtualized.html" class="nav-link">
+  可视区域渲染
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="工具" class="dropdown-title"><span class="title">工具</span> <span class="arrow down"></span></button> <button type="button" aria-label="工具" class="mobile-dropdown-title"><span class="title">工具</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/Git.html" class="nav-link">
+  Git
+</a></li><li class="dropdown-item"><!----> <a href="/webpack.html" class="nav-link">
+  webpack
+</a></li><li class="dropdown-item"><!----> <a href="/moment.html" class="nav-link">
+  moment
+</a></li><li class="dropdown-item"><!----> <a href="/mysql.html" aria-current="page" class="nav-link router-link-exact-active router-link-active">
+  mysql
+</a></li></ul></div></div><div class="nav-item"><a href="/websocket.html" class="nav-link">
+  webSocket
+</a></div><div class="nav-item"><a href="/nodejs.html" class="nav-link">
+  Node
+</a></div> <!----></nav>  <ul class="sidebar-links"><li><section class="sidebar-group depth-0"><p class="sidebar-heading open"><span>常用的mysql语句</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/mysql.html#常用的mysql语句" class="sidebar-link">常用的mysql语句</a><ul class="sidebar-sub-headers"></ul></li></ul></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h2 id="常用的mysql语句"><a href="#常用的mysql语句" class="header-anchor">#</a> 常用的mysql语句</h2> <p>连接数据库</p> <div class="language-mysql extra-class"><pre class="language-text"><code># mysql -h 主机地址 -u 用户名  -p 用户密码	
+mysql -hlocalhost -uroot -p
+</code></pre></div><p>退出MySQL数据库</p> <div class="language-mysql extra-class"><pre class="language-text"><code>exit（回车）
+</code></pre></div><p>修改用户密码</p> <div class="language-mysql extra-class"><pre class="language-text"><code># mysqladmin -u 用户名 -p 旧密码 password 新密码
+mysqladmin -u root -password ab12;
+</code></pre></div><p>创建数据库</p> <div class="language-mysql extra-class"><pre class="language-text"><code># create database &lt;数据库名&gt;
+create database book
+</code></pre></div><p>显示数据库</p> <div class="language-mysql extra-class"><pre class="language-text"><code>show databases;
+</code></pre></div><p>删除数据库</p> <div class="language-mysql extra-class"><pre class="language-text"><code># drop database &lt;数据库名&gt;
+drop database company;
+</code></pre></div><p>选择数据库</p> <div class="language-mysql extra-class"><pre class="language-text"><code># use &lt;数据库名&gt;
+use company;
+</code></pre></div><p>创建数据表</p> <div class="language-mysql extra-class"><pre class="language-text"><code># create table &lt;表名&gt;
+create table user
+</code></pre></div><p>获取数据库表结构</p> <div class="language-mysql extra-class"><pre class="language-text"><code># desc &lt;表名&gt;;
+desc user;
+</code></pre></div><p>删除数据表</p> <div class="language-mysql extra-class"><pre class="language-text"><code># drop table &lt;表名&gt;	
+drop table info;
+</code></pre></div><p>向数据表中插入数据</p> <div class="language-mysql extra-class"><pre class="language-text"><code># insert into &lt;表名&gt; [(字段名1)[,...字段名n])] value (值1）[,(值n)];
+insert into student (id,name,age) value (1,'张三',13);
+</code></pre></div><p>查询数据表中的数据</p> <div class="language-mysql extra-class"><pre class="language-text"><code># select &lt;字段1，字段2，...&gt; from &lt;表名&gt; where &lt;条件&gt;; 	
+select * from student;
+</code></pre></div><p>修改数据表中的数据</p> <div class="language-mysql extra-class"><pre class="language-text"><code># update 表名 set 字段=新值,... where 条件;	
+update student set age=20 where id=1;
+</code></pre></div><p>增加字段</p> <div class="language-mysql extra-class"><pre class="language-text"><code># alter table 表名 add 字段 类型 其他;	
+alter table student add address varchar(40) default null;
+</code></pre></div><p>加主关键字</p> <div class="language-mysql extra-class"><pre class="language-text"><code># alter table 表名 add primary key (字段名);	
+alter table student add primary key (id);
+</code></pre></div><p>加唯一限制条件</p> <div class="language-mysql extra-class"><pre class="language-text"><code># alter table 表名 add unique 索引名（字段名）;	
+alter table student add unique emp_name2(id);
+</code></pre></div><p>查询表结构</p> <div class="language-mysql extra-class"><pre class="language-text"><code># show columns from student;
+show columns from student;
+</code></pre></div><p>修改数据库表名</p> <div class="language-mysql extra-class"><pre class="language-text"><code># rename table 原表名 to 新表名;
+rename table student to stu;
+</code></pre></div><p>删除记录</p> <div class="language-mysql extra-class"><pre class="language-text"><code># delete from 表名 where 表达式;
+delete from student where id=1;
+</code></pre></div><p>导出数据库</p> <div class="language-mysql extra-class"><pre class="language-text"><code># mysqldump -u 用户名 -p 数据库名 &gt; 导出的文件名
+mysqldump -uroot -p  company &gt; 123.sql
+</code></pre></div><p>导出数据表</p> <div class="language-mysql extra-class"><pre class="language-text"><code># mysqldump -u 用户名 -p 数据库名 表名&gt;导出的文件名
+mysqldump -uroot -p company admin &gt; outfile.sql
+</code></pre></div><p>查看第n行后的m条记录</p> <div class="language-mysql extra-class"><pre class="language-text"><code># select * from &lt;表名&gt; limit row,rows;
+select * from student limit n,m;
+</code></pre></div></div> <footer class="page-edit"><!----> <!----></footer> <!----> </main></div><div class="global-ui"></div></div>
+    <script src="/assets/js/app.6443168d.js" defer></script><script src="/assets/js/2.c004a395.js" defer></script><script src="/assets/js/17.c32949c2.js" defer></script>
+  </body>
+</html>

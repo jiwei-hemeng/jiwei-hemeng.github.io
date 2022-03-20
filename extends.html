@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Bind、Call() 和apply的区别 | Hello VuePress</title>
+    <meta name="generator" content="VuePress 1.9.7">
+    
+    <meta name="description" content="Just playing around">
+    
+    <link rel="preload" href="/assets/css/0.styles.e4d8b86b.css" as="style"><link rel="preload" href="/assets/js/app.6443168d.js" as="script"><link rel="preload" href="/assets/js/2.c004a395.js" as="script"><link rel="preload" href="/assets/js/14.3fc22dc9.js" as="script"><link rel="prefetch" href="/assets/js/10.5a6b3cf3.js"><link rel="prefetch" href="/assets/js/11.58e01be6.js"><link rel="prefetch" href="/assets/js/12.87cfbe9d.js"><link rel="prefetch" href="/assets/js/13.a9b7d1ab.js"><link rel="prefetch" href="/assets/js/15.db8474c7.js"><link rel="prefetch" href="/assets/js/16.4948a94b.js"><link rel="prefetch" href="/assets/js/17.c32949c2.js"><link rel="prefetch" href="/assets/js/18.9bc565d1.js"><link rel="prefetch" href="/assets/js/19.a46de05c.js"><link rel="prefetch" href="/assets/js/20.7bbe468a.js"><link rel="prefetch" href="/assets/js/21.991dfd9b.js"><link rel="prefetch" href="/assets/js/22.70e2c5ef.js"><link rel="prefetch" href="/assets/js/23.c465cffa.js"><link rel="prefetch" href="/assets/js/24.e8a81961.js"><link rel="prefetch" href="/assets/js/25.2c121615.js"><link rel="prefetch" href="/assets/js/3.b462c5ec.js"><link rel="prefetch" href="/assets/js/4.b552b4ea.js"><link rel="prefetch" href="/assets/js/5.9c861387.js"><link rel="prefetch" href="/assets/js/6.916f169b.js"><link rel="prefetch" href="/assets/js/7.1145d7e7.js"><link rel="prefetch" href="/assets/js/8.9324c43d.js"><link rel="prefetch" href="/assets/js/9.9e72a500.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.e4d8b86b.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><!----> <span class="site-name">Hello VuePress</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/" class="nav-link">
+  首页
+</a></div><div class="nav-item"><a href="/ES6.html" class="nav-link">
+  ES6
+</a></div><div class="nav-item"><a href="/closure.html" class="nav-link">
+  闭包
+</a></div><div class="nav-item"><a href="/extends.html" aria-current="page" class="nav-link router-link-exact-active router-link-active">
+  继承
+</a></div><div class="nav-item"><a href="/network.html" class="nav-link">
+  网络请求
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Vue" class="dropdown-title"><span class="title">Vue</span> <span class="arrow down"></span></button> <button type="button" aria-label="Vue" class="mobile-dropdown-title"><span class="title">Vue</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/vuex.html" class="nav-link">
+  Vuex
+</a></li><li class="dropdown-item"><!----> <a href="/vue3.0.html" class="nav-link">
+  Vue3.0
+</a></li><li class="dropdown-item"><!----> <a href="/uni-app.html" class="nav-link">
+  uniApp
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="React" class="dropdown-title"><span class="title">React</span> <span class="arrow down"></span></button> <button type="button" aria-label="React" class="mobile-dropdown-title"><span class="title">React</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/react.html" class="nav-link">
+  React
+</a></li><li class="dropdown-item"><!----> <a href="/react-redux.html" class="nav-link">
+  ReactRedux
+</a></li><li class="dropdown-item"><!----> <a href="/React-virtualized.html" class="nav-link">
+  可视区域渲染
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="工具" class="dropdown-title"><span class="title">工具</span> <span class="arrow down"></span></button> <button type="button" aria-label="工具" class="mobile-dropdown-title"><span class="title">工具</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/Git.html" class="nav-link">
+  Git
+</a></li><li class="dropdown-item"><!----> <a href="/webpack.html" class="nav-link">
+  webpack
+</a></li><li class="dropdown-item"><!----> <a href="/moment.html" class="nav-link">
+  moment
+</a></li><li class="dropdown-item"><!----> <a href="/mysql.html" class="nav-link">
+  mysql
+</a></li></ul></div></div><div class="nav-item"><a href="/websocket.html" class="nav-link">
+  webSocket
+</a></div><div class="nav-item"><a href="/nodejs.html" class="nav-link">
+  Node
+</a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/" class="nav-link">
+  首页
+</a></div><div class="nav-item"><a href="/ES6.html" class="nav-link">
+  ES6
+</a></div><div class="nav-item"><a href="/closure.html" class="nav-link">
+  闭包
+</a></div><div class="nav-item"><a href="/extends.html" aria-current="page" class="nav-link router-link-exact-active router-link-active">
+  继承
+</a></div><div class="nav-item"><a href="/network.html" class="nav-link">
+  网络请求
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Vue" class="dropdown-title"><span class="title">Vue</span> <span class="arrow down"></span></button> <button type="button" aria-label="Vue" class="mobile-dropdown-title"><span class="title">Vue</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/vuex.html" class="nav-link">
+  Vuex
+</a></li><li class="dropdown-item"><!----> <a href="/vue3.0.html" class="nav-link">
+  Vue3.0
+</a></li><li class="dropdown-item"><!----> <a href="/uni-app.html" class="nav-link">
+  uniApp
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="React" class="dropdown-title"><span class="title">React</span> <span class="arrow down"></span></button> <button type="button" aria-label="React" class="mobile-dropdown-title"><span class="title">React</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/react.html" class="nav-link">
+  React
+</a></li><li class="dropdown-item"><!----> <a href="/react-redux.html" class="nav-link">
+  ReactRedux
+</a></li><li class="dropdown-item"><!----> <a href="/React-virtualized.html" class="nav-link">
+  可视区域渲染
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="工具" class="dropdown-title"><span class="title">工具</span> <span class="arrow down"></span></button> <button type="button" aria-label="工具" class="mobile-dropdown-title"><span class="title">工具</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/Git.html" class="nav-link">
+  Git
+</a></li><li class="dropdown-item"><!----> <a href="/webpack.html" class="nav-link">
+  webpack
+</a></li><li class="dropdown-item"><!----> <a href="/moment.html" class="nav-link">
+  moment
+</a></li><li class="dropdown-item"><!----> <a href="/mysql.html" class="nav-link">
+  mysql
+</a></li></ul></div></div><div class="nav-item"><a href="/websocket.html" class="nav-link">
+  webSocket
+</a></div><div class="nav-item"><a href="/nodejs.html" class="nav-link">
+  Node
+</a></div> <!----></nav>  <ul class="sidebar-links"><li><section class="sidebar-group depth-0"><p class="sidebar-heading open"><span>Bind、Call() 和apply的区别</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/extends.html#bind、call-和apply的区别" class="sidebar-link">Bind、Call() 和apply的区别</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/extends.html#构造函数的成员" class="sidebar-link">构造函数的成员</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/extends.html#es5中的继承" class="sidebar-link">es5中的继承</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/extends.html#es6-中的继承" class="sidebar-link">es6 中的继承</a><ul class="sidebar-sub-headers"></ul></li></ul></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h2 id="bind、call-和apply的区别"><a href="#bind、call-和apply的区别" class="header-anchor">#</a> Bind、Call() 和apply的区别</h2> <ul><li>apply()方法 接收两个参数，一个是函数运行的作用域（this），另一个是参数数组，会立即执行</li> <li>call()方法 第一个参数和apply()方法的一样，但是传递给函数的参数必须列举出来，会立即执行</li> <li>Bind()和call很相似，第一个参数是this的指向，从第二个参数开始是接收的参数列表，不会立即执行</li></ul> <h2 id="构造函数的成员"><a href="#构造函数的成员" class="header-anchor">#</a> 构造函数的成员</h2> <p>实例成员：构造函数内部的成员，只能通过实例对象调用</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">function</span> <span class="token function">Star</span><span class="token punctuation">(</span><span class="token parameter">uname<span class="token punctuation">,</span> age</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">this</span><span class="token punctuation">.</span>uname <span class="token operator">=</span> uname<span class="token punctuation">;</span>
+  <span class="token keyword">this</span><span class="token punctuation">.</span>age <span class="token operator">=</span> age<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">const</span> obj <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Star</span><span class="token punctuation">(</span><span class="token string">&quot;zfs&quot;</span><span class="token punctuation">,</span> <span class="token number">18</span><span class="token punctuation">)</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>obj<span class="token punctuation">.</span>name<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 只能通过实例对象调用</span>
+</code></pre></div><p>静态成员： 在构造函数本身上添加的成员，只能由构造函数本身访问</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">function</span> <span class="token function">Star</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+Star<span class="token punctuation">.</span>sex <span class="token operator">=</span> <span class="token string">&quot;男&quot;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>Star<span class="token punctuation">.</span>sex<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 只能由构造函数本身访问</span>
+</code></pre></div><h2 id="es5中的继承"><a href="#es5中的继承" class="header-anchor">#</a> es5中的继承</h2> <blockquote><p>继承的优点： 可以更好的共享属性和方法</p></blockquote> <p>继承方式有以下几种**</p> <ul><li>原型继承</li> <li>构造继承</li> <li>实例继承</li> <li>call/apply继承（组合继承）</li> <li>ES6 使用class extends 继承</li></ul> <p><strong>es5 属性的继承</strong></p> <blockquote><p>原理： 在子类使用call方法改变this指向即可</p></blockquote> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">function</span> <span class="token function">Father</span><span class="token punctuation">(</span><span class="token parameter">uname<span class="token punctuation">,</span> age</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">this</span><span class="token punctuation">.</span>uname <span class="token operator">=</span> uname<span class="token punctuation">;</span>
+  <span class="token keyword">this</span><span class="token punctuation">.</span>age <span class="token operator">=</span> age<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">function</span> <span class="token function">Son</span><span class="token punctuation">(</span><span class="token parameter">uname<span class="token punctuation">,</span> age<span class="token punctuation">,</span> score</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token function">Father</span><span class="token punctuation">.</span><span class="token function">call</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">,</span> uname<span class="token punctuation">,</span> age<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 在子类使用call方法改变this指向即可</span>
+  <span class="token keyword">this</span><span class="token punctuation">.</span>score <span class="token operator">=</span> score<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">const</span> obj <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Son</span><span class="token punctuation">(</span><span class="token string">&quot;zsf&quot;</span><span class="token punctuation">,</span> <span class="token number">23</span><span class="token punctuation">,</span> <span class="token number">99</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>obj<span class="token punctuation">)</span><span class="token punctuation">;</span>    <span class="token comment">// result: {uname: &quot;zsf&quot;, age: 23, score: 99}</span>
+</code></pre></div><p><strong>es5 方法的继承</strong></p> <blockquote><p>原理： 将父类的实例对象赋值给子类的原型对象，再使用子类的constructor指向子类的构造函数</p></blockquote> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">function</span> <span class="token function">Father</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+<span class="token class-name">Father</span><span class="token punctuation">.</span>prototype<span class="token punctuation">.</span><span class="token function-variable function">say</span> <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">&quot;hello, 我是父类的方法&quot;</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">function</span> <span class="token function">Son</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+<span class="token class-name">Son</span><span class="token punctuation">.</span>prototype <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Father</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token class-name">Son</span><span class="token punctuation">.</span>prototype<span class="token punctuation">.</span>constructor <span class="token operator">=</span> Son<span class="token punctuation">;</span>
+<span class="token class-name">Son</span><span class="token punctuation">.</span>prototype<span class="token punctuation">.</span><span class="token function-variable function">hi</span> <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">&quot;hi, 我是子类的方法&quot;</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">let</span> obj <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Son</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+obj<span class="token punctuation">.</span><span class="token function">say</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// hello, 我是父类的方法</span>
+obj<span class="token punctuation">.</span><span class="token function">hi</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// hi, 我是子类的方法</span>
+</code></pre></div><h2 id="es6-中的继承"><a href="#es6-中的继承" class="header-anchor">#</a> es6 中的继承</h2> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">class</span> <span class="token class-name">Father</span> <span class="token punctuation">{</span>
+  <span class="token function">constructor</span><span class="token punctuation">(</span><span class="token parameter">uname<span class="token punctuation">,</span> age</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>uname <span class="token operator">=</span> uname<span class="token punctuation">;</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>age <span class="token operator">=</span> age<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  <span class="token function">say</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">&quot;hello, 我是父类的方法&quot;</span><span class="token punctuation">)</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">class</span> <span class="token class-name">Son</span> <span class="token keyword">extends</span> <span class="token class-name">Father</span> <span class="token punctuation">{</span>
+  <span class="token function">constructor</span><span class="token punctuation">(</span><span class="token parameter">uname<span class="token punctuation">,</span> age<span class="token punctuation">,</span> score</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">super</span><span class="token punctuation">(</span>uname<span class="token punctuation">,</span> age<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>score <span class="token operator">=</span> score<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  <span class="token function">hi</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">&quot;hi, 我是子类的方法&quot;</span><span class="token punctuation">)</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">const</span> obj <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Son</span><span class="token punctuation">(</span><span class="token string">&quot;zsf&quot;</span><span class="token punctuation">,</span> <span class="token number">22</span><span class="token punctuation">,</span> <span class="token number">98</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>obj<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// result: {uname: &quot;zsf&quot;, age: 22, score: 98}</span>
+obj<span class="token punctuation">.</span><span class="token function">say</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// hello, 我是父类的方法</span>
+obj<span class="token punctuation">.</span><span class="token function">hi</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// hi, 我是子类的方法</span>
+</code></pre></div></div> <footer class="page-edit"><!----> <!----></footer> <!----> </main></div><div class="global-ui"></div></div>
+    <script src="/assets/js/app.6443168d.js" defer></script><script src="/assets/js/2.c004a395.js" defer></script><script src="/assets/js/14.3fc22dc9.js" defer></script>
+  </body>
+</html>

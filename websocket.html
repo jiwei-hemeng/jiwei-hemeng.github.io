@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>webSocket | Hello VuePress</title>
+    <meta name="generator" content="VuePress 1.9.7">
+    
+    <meta name="description" content="Just playing around">
+    
+    <link rel="preload" href="/assets/css/0.styles.e4d8b86b.css" as="style"><link rel="preload" href="/assets/js/app.6443168d.js" as="script"><link rel="preload" href="/assets/js/2.c004a395.js" as="script"><link rel="preload" href="/assets/js/25.2c121615.js" as="script"><link rel="prefetch" href="/assets/js/10.5a6b3cf3.js"><link rel="prefetch" href="/assets/js/11.58e01be6.js"><link rel="prefetch" href="/assets/js/12.87cfbe9d.js"><link rel="prefetch" href="/assets/js/13.a9b7d1ab.js"><link rel="prefetch" href="/assets/js/14.3fc22dc9.js"><link rel="prefetch" href="/assets/js/15.db8474c7.js"><link rel="prefetch" href="/assets/js/16.4948a94b.js"><link rel="prefetch" href="/assets/js/17.c32949c2.js"><link rel="prefetch" href="/assets/js/18.9bc565d1.js"><link rel="prefetch" href="/assets/js/19.a46de05c.js"><link rel="prefetch" href="/assets/js/20.7bbe468a.js"><link rel="prefetch" href="/assets/js/21.991dfd9b.js"><link rel="prefetch" href="/assets/js/22.70e2c5ef.js"><link rel="prefetch" href="/assets/js/23.c465cffa.js"><link rel="prefetch" href="/assets/js/24.e8a81961.js"><link rel="prefetch" href="/assets/js/3.b462c5ec.js"><link rel="prefetch" href="/assets/js/4.b552b4ea.js"><link rel="prefetch" href="/assets/js/5.9c861387.js"><link rel="prefetch" href="/assets/js/6.916f169b.js"><link rel="prefetch" href="/assets/js/7.1145d7e7.js"><link rel="prefetch" href="/assets/js/8.9324c43d.js"><link rel="prefetch" href="/assets/js/9.9e72a500.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.e4d8b86b.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><!----> <span class="site-name">Hello VuePress</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/" class="nav-link">
+  首页
+</a></div><div class="nav-item"><a href="/ES6.html" class="nav-link">
+  ES6
+</a></div><div class="nav-item"><a href="/closure.html" class="nav-link">
+  闭包
+</a></div><div class="nav-item"><a href="/extends.html" class="nav-link">
+  继承
+</a></div><div class="nav-item"><a href="/network.html" class="nav-link">
+  网络请求
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Vue" class="dropdown-title"><span class="title">Vue</span> <span class="arrow down"></span></button> <button type="button" aria-label="Vue" class="mobile-dropdown-title"><span class="title">Vue</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/vuex.html" class="nav-link">
+  Vuex
+</a></li><li class="dropdown-item"><!----> <a href="/vue3.0.html" class="nav-link">
+  Vue3.0
+</a></li><li class="dropdown-item"><!----> <a href="/uni-app.html" class="nav-link">
+  uniApp
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="React" class="dropdown-title"><span class="title">React</span> <span class="arrow down"></span></button> <button type="button" aria-label="React" class="mobile-dropdown-title"><span class="title">React</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/react.html" class="nav-link">
+  React
+</a></li><li class="dropdown-item"><!----> <a href="/react-redux.html" class="nav-link">
+  ReactRedux
+</a></li><li class="dropdown-item"><!----> <a href="/React-virtualized.html" class="nav-link">
+  可视区域渲染
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="工具" class="dropdown-title"><span class="title">工具</span> <span class="arrow down"></span></button> <button type="button" aria-label="工具" class="mobile-dropdown-title"><span class="title">工具</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/Git.html" class="nav-link">
+  Git
+</a></li><li class="dropdown-item"><!----> <a href="/webpack.html" class="nav-link">
+  webpack
+</a></li><li class="dropdown-item"><!----> <a href="/moment.html" class="nav-link">
+  moment
+</a></li><li class="dropdown-item"><!----> <a href="/mysql.html" class="nav-link">
+  mysql
+</a></li></ul></div></div><div class="nav-item"><a href="/websocket.html" aria-current="page" class="nav-link router-link-exact-active router-link-active">
+  webSocket
+</a></div><div class="nav-item"><a href="/nodejs.html" class="nav-link">
+  Node
+</a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/" class="nav-link">
+  首页
+</a></div><div class="nav-item"><a href="/ES6.html" class="nav-link">
+  ES6
+</a></div><div class="nav-item"><a href="/closure.html" class="nav-link">
+  闭包
+</a></div><div class="nav-item"><a href="/extends.html" class="nav-link">
+  继承
+</a></div><div class="nav-item"><a href="/network.html" class="nav-link">
+  网络请求
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Vue" class="dropdown-title"><span class="title">Vue</span> <span class="arrow down"></span></button> <button type="button" aria-label="Vue" class="mobile-dropdown-title"><span class="title">Vue</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/vuex.html" class="nav-link">
+  Vuex
+</a></li><li class="dropdown-item"><!----> <a href="/vue3.0.html" class="nav-link">
+  Vue3.0
+</a></li><li class="dropdown-item"><!----> <a href="/uni-app.html" class="nav-link">
+  uniApp
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="React" class="dropdown-title"><span class="title">React</span> <span class="arrow down"></span></button> <button type="button" aria-label="React" class="mobile-dropdown-title"><span class="title">React</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/react.html" class="nav-link">
+  React
+</a></li><li class="dropdown-item"><!----> <a href="/react-redux.html" class="nav-link">
+  ReactRedux
+</a></li><li class="dropdown-item"><!----> <a href="/React-virtualized.html" class="nav-link">
+  可视区域渲染
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="工具" class="dropdown-title"><span class="title">工具</span> <span class="arrow down"></span></button> <button type="button" aria-label="工具" class="mobile-dropdown-title"><span class="title">工具</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/Git.html" class="nav-link">
+  Git
+</a></li><li class="dropdown-item"><!----> <a href="/webpack.html" class="nav-link">
+  webpack
+</a></li><li class="dropdown-item"><!----> <a href="/moment.html" class="nav-link">
+  moment
+</a></li><li class="dropdown-item"><!----> <a href="/mysql.html" class="nav-link">
+  mysql
+</a></li></ul></div></div><div class="nav-item"><a href="/websocket.html" aria-current="page" class="nav-link router-link-exact-active router-link-active">
+  webSocket
+</a></div><div class="nav-item"><a href="/nodejs.html" class="nav-link">
+  Node
+</a></div> <!----></nav>  <ul class="sidebar-links"><li><section class="sidebar-group depth-0"><p class="sidebar-heading open"><span>webSocket</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/websocket.html#websocket" class="sidebar-link">webSocket</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/websocket.html#原生websocket-体验" class="sidebar-link">原生websocket 体验</a></li><li class="sidebar-sub-header"><a href="/websocket.html#socketio" class="sidebar-link">socketIo</a></li></ul></li></ul></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h2 id="websocket"><a href="#websocket" class="header-anchor">#</a> webSocket</h2> <blockquote><p>实现实时通信</p></blockquote> <h3 id="原生websocket-体验"><a href="#原生websocket-体验" class="header-anchor">#</a> 原生websocket 体验</h3> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">const</span> ws <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">WebSocket</span><span class="token punctuation">(</span><span class="token string">&quot;wss://echo.websocket.org&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+ws<span class="token punctuation">.</span><span class="token function-variable function">onopen</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">evt</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">&quot;建立连接成功&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  ws<span class="token punctuation">.</span><span class="token function">send</span><span class="token punctuation">(</span><span class="token string">&quot;hello webscoket&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+ws<span class="token punctuation">.</span><span class="token function-variable function">onmessage</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">evt</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">&quot;接收到的消息&quot;</span><span class="token punctuation">,</span> evt<span class="token punctuation">.</span>data<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+ws<span class="token punctuation">.</span><span class="token function-variable function">onclose</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">evt</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">&quot;连接已关闭&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h3 id="socketio"><a href="#socketio" class="header-anchor">#</a> socketIo</h3> <blockquote><p>相关连接：<a href="https://github.com/socketio/socket.io-client" target="_blank" rel="noopener noreferrer">github 仓库<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a> <a href="https://socket.io/docs/v4/client-api/" target="_blank" rel="noopener noreferrer">客户端 API<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></p></blockquote> <p><strong>安装</strong></p> <div class="language-shell extra-class"><pre class="language-shell"><code><span class="token function">npm</span> i socket.io-client
+</code></pre></div><p><strong>使用</strong></p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">import</span> io <span class="token keyword">from</span> <span class="token string">&quot;socket.io-client&quot;</span><span class="token punctuation">;</span>
+<span class="token comment">// 建立连接</span>
+<span class="token keyword">const</span> socket <span class="token operator">=</span> <span class="token function">io</span><span class="token punctuation">(</span>http<span class="token operator">:</span><span class="token operator">/</span><span class="token operator">/</span>localhost<span class="token operator">?</span>token<span class="token operator">=</span>abc<span class="token punctuation">)</span><span class="token punctuation">;</span>
+socket<span class="token punctuation">.</span><span class="token function">on</span><span class="token punctuation">(</span><span class="token string">&quot;connect&quot;</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">&quot;连接建立成功&quot;</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+socket<span class="token punctuation">.</span><span class="token function">on</span><span class="token punctuation">(</span><span class="token string">&quot;event&quot;</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">)</span>
+socket<span class="token punctuation">.</span><span class="token function">on</span><span class="token punctuation">(</span><span class="token string">&quot;disconnect&quot;</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">&quot;断开连接了&quot;</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+</code></pre></div><p><strong>发送消息</strong></p> <blockquote><p>语法： socket.emit(&quot;消息类型&quot;, &quot;消息内容&quot;);</p></blockquote> <div class="language-js extra-class"><pre class="language-js"><code>socket<span class="token punctuation">.</span><span class="token function">emit</span><span class="token punctuation">(</span><span class="token string">&quot;message&quot;</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+  <span class="token literal-property property">msg</span><span class="token operator">:</span> <span class="token string">&quot;你好&quot;</span><span class="token punctuation">,</span>
+  <span class="token literal-property property">timestamp</span><span class="token operator">:</span> Date<span class="token punctuation">.</span><span class="token function">now</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+</code></pre></div><p><strong>接收消息</strong></p> <blockquote><p>语法： socket.on(&quot;消息类型&quot;, callback)</p></blockquote> <div class="language-js extra-class"><pre class="language-js"><code>socket<span class="token punctuation">.</span><span class="token function">on</span><span class="token punctuation">(</span><span class="token string">&quot;message&quot;</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token parameter">data</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span><span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">&quot;message&quot;</span><span class="token punctuation">,</span> data<span class="token punctuation">)</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+</code></pre></div></div> <footer class="page-edit"><!----> <!----></footer> <!----> </main></div><div class="global-ui"></div></div>
+    <script src="/assets/js/app.6443168d.js" defer></script><script src="/assets/js/2.c004a395.js" defer></script><script src="/assets/js/25.2c121615.js" defer></script>
+  </body>
+</html>
