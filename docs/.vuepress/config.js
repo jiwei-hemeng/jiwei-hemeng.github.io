@@ -4,7 +4,7 @@ module.exports = {
   themeConfig: {
     nav: [{
         text: '首页',
-        link: '/summary.md'
+        link: '/'
       },
       {
         text: 'ES6',
@@ -26,6 +26,9 @@ module.exports = {
         text: 'Vue',
         ariaLabel: 'Vue',
         items: [{
+            text: 'vue',
+            link: '/vue.md'
+          }, {
             text: 'Vuex',
             link: '/vuex.md'
           },
