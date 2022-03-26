@@ -4,7 +4,7 @@ module.exports = {
   themeConfig: {
     nav: [{
         text: '首页',
-        link: '/'
+        link: '/summary.md'
       },
       {
         text: 'ES6',
