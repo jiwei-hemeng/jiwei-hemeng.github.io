@@ -5,20 +5,21 @@ export default defineConfig({
   title: "青青子衿",
   description: "个人网站",
   base: "/",
-  // base: "/mysite/",
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
     nav: [
       { text: "Home", link: "/" },
-      { text: "Examples", link: "/markdown-examples" },
+      { text: "vue学习资料", link: "/vue" },
     ],
 
     sidebar: [
       {
         text: "Examples",
         items: [
-          { text: "Markdown Examples", link: "/markdown-examples" },
-          { text: "Runtime API Examples", link: "/api-examples" },
+          { text: "vue新特性", link: "/vue" },
+          { text: "vue 资料", link: "/vue2" },
+          { text: "vuex 资料", link: "/vuex" },
+          { text: "uniApp", link: "/uni-app" },
         ],
       },
     ],
