@@ -1,0 +1,1 @@
+import{_ as s,c as i,o as a,V as n}from"./chunks/framework.r7tTr1Sn.js";const o=JSON.parse('{"title":"CustomEvent 自定义事件","description":"","frontmatter":{},"headers":[],"relativePath":"vue.md","filePath":"vue.md"}'),h={name:"vue.md"},l=n("",245),t=[l];function k(p,e,E,d,r,g){return a(),i("div",null,t)}const c=s(h,[["render",k]]);export{o as __pageData,c as default};
