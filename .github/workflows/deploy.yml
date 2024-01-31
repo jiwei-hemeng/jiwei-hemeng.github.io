@@ -22,7 +22,7 @@ jobs:
       # 安装依赖
       - run: npm ci
       # 打包构建
-      - run: yarn docs:build
+      - run: npm run docs:build
         env:
           CI: false
       # 发布到 GitHub Pages
