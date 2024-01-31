@@ -3,7 +3,7 @@ import { defineConfig } from "vitepress";
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
   title: "青青子衿",
-  description: "我的站点",
+  description: "个人网站",
   base: "/",
   // base: "/mysite/",
   themeConfig: {
