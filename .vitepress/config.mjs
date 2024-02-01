@@ -17,7 +17,7 @@ export default defineConfig({
         text: "Examples",
         items: [
           { text: "vue新特性", link: "/vue" },
-          { text: "vue 资料", link: "/vue2" },
+          { text: "vue2学习资料", link: "/vue2" },
           { text: "vuex 资料", link: "/vuex" },
           { text: "uniApp", link: "/uni-app" },
         ],
