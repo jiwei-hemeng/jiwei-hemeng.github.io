@@ -38,9 +38,14 @@ jobs:
           npm ci
           npm run docs:build
       # 发布到 GitHub Pages
-      - name: Deploy
-        uses: peaceiris/actions-gh-pages@v2
-        env:
-          PERSONAL_TOKEN: ${{ secrets.ACCESS_TOKEN }} # 访问秘钥
-          PUBLISH_BRANCH: gh-pages # 推送分支
-          PUBLISH_DIR: .vitepress/dist # 部署目录
+      # - name: Deploy
+      #   uses: peaceiris/actions-gh-pages@v2
+      #   env:
+      #     PERSONAL_TOKEN: ${{ secrets.ACCESS_TOKEN }} # 访问秘钥
+      #     PUBLISH_BRANCH: gh-pages # 推送分支
+      #     PUBLISH_DIR: .vitepress/dist # 部署目录
+      - name: Deploy GitHub Pages
+          uses: peaceiris/actions-gh-pages@v3
+          with:
+            github_token: ${{ secrets.ACCESS_TOKEN }}
+            publish_dir: .vitepress/dist
