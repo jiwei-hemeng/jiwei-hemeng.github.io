@@ -1,0 +1,1 @@
+import{_ as s,c as i,o as a,V as n}from"./chunks/framework.BdkTXYaf.js";const o=JSON.parse('{"title":"闭包","description":"","frontmatter":{},"headers":[],"relativePath":"closure.md","filePath":"closure.md"}'),h={name:"closure.md"},l=n("",57),k=[l];function t(p,e,E,r,d,g){return a(),i("div",null,k)}const c=s(h,[["render",t]]);export{o as __pageData,c as default};

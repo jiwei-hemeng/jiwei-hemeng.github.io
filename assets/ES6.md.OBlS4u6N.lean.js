@@ -1,0 +1,1 @@
+import{_ as s,c as i,o as a,V as n}from"./chunks/framework.BdkTXYaf.js";const o=JSON.parse('{"title":"","description":"","frontmatter":{},"headers":[],"relativePath":"ES6.md","filePath":"ES6.md"}'),h={name:"ES6.md"},l=n("",108),t=[l];function k(p,e,E,r,d,g){return a(),i("div",null,t)}const c=s(h,[["render",k]]);export{o as __pageData,c as default};

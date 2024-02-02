@@ -1,0 +1,1 @@
+import{_ as s,c as i,o as a,V as n}from"./chunks/framework.BdkTXYaf.js";const o=JSON.parse('{"title":"","description":"","frontmatter":{},"headers":[],"relativePath":"network.md","filePath":"network.md"}'),h={name:"network.md"},l=n("",69),k=[l];function t(p,e,E,r,d,g){return a(),i("div",null,k)}const F=s(h,[["render",t]]);export{o as __pageData,F as default};
