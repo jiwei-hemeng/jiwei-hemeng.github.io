@@ -45,8 +45,8 @@ jobs:
       #     PUBLISH_BRANCH: gh-pages # 推送分支
       #     PUBLISH_DIR: .vitepress/dist # 部署目录
       - name: Deploy GitHub Pages
-          uses: peaceiris/actions-gh-pages@v3
-          with:
-            github_token: ${{ secrets.ACCESS_TOKEN }}
-            publish_branch: gh-pages
-            publish_dir: .vitepress/dist
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.ACCESS_TOKEN }}
+          publish_branch: gh-pages
+          publish_dir: .vitepress/dist
