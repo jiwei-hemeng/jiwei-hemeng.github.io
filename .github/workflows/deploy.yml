@@ -3,27 +3,27 @@ on:
   push:
     branches:
       - main # main 分支有 push 行为时就触发这个 action
-  jobs:
-    build-deploy:
-      runs-on: ubuntu-latest
-      steps:
-        # 下载仓库代码
-        - name: Checkout
-          uses: actions/checkout@v3
-        # 使用nodeJs
-        - name: Use Node.js 18
-          uses: actions/setup-node@v3
-          with:
-            node-version: "18.x"
-        # 打包构建项目
-        - name: Build Project
-          run: |
-            npm ci
-            npm run docs:build
-        # 发布到 GitHub Pages
-        - name: Deploy GitHub Pages
-          uses: peaceiris/actions-gh-pages@v3
-          with:
-            github_token: ${{ secrets.ACCESS_TOKEN }}
-            publish_branch: gh-pages
-            publish_dir: .vitepress/dist
+jobs:
+  build-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      # 下载仓库代码
+      - name: Checkout
+        uses: actions/checkout@v3
+      # 使用nodeJs
+      - name: Use Node.js 18
+        uses: actions/setup-node@v3
+        with:
+          node-version: "18.x"
+      # 打包构建项目
+      - name: Build Project
+        run: |
+          npm ci
+          npm run docs:build
+      # 发布到 GitHub Pages
+      - name: Deploy GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.ACCESS_TOKEN }}
+          publish_branch: gh-pages
+          publish_dir: .vitepress/dist
