@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      audio {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <button id="mp1">主题曲-天气预报</button>
+    <button id="mp2">冯提莫-凉凉</button>
+    <audio class="mp1_1" src="./sound1.mp3"></audio>
+    <audio class="mp1_2" src="./sound2.mp3"></audio>
+    <script>
+      const mp1_1 = document.querySelector(".mp1_1");
+      const mp1_btn = document.querySelector("#mp1");
+      const mp2_btn = document.querySelector("#mp2");
+      const mp1_2 = document.querySelector(".mp1_2");
+      let playState = true;
+      let playState2 = true;
+      mp1_btn.addEventListener("click", () => {
+        if (playState) {
+          mp1_1.play();
+        } else {
+          mp1_1.pause();
+        }
+        playState2 ? null : mp2_btn.click();
+        playState = !playState;
+      });
+      mp2_btn.addEventListener("click", () => {
+        if (playState2) {
+          mp1_2.play();
+        } else {
+          mp1_2.pause();
+        }
+        playState ? null : mp1_btn.click();
+        playState2 = !playState2;
+      });
+    </script>
+  </body>
+</html>
