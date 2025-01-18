@@ -341,7 +341,7 @@
             S.UI.simulate(decodeURI(action).substring(i + 3));
           } else {
             S.UI.simulate(
-              "|#countdown 3||新|年|快|乐|王凯丽同学|事事如意|希望你喜欢"
+              "|#countdown 3||王凯丽同学|蛇年大吉|事事如意|希望你喜欢"
             );
           }
 
@@ -401,7 +401,7 @@
             context.fillStyle = c.render();
             context.beginPath();
             // 文字圈圈的大小
-            context.arc(p.x, p.y, p.z / 4, 0, 2 * Math.PI, true);
+            context.arc(p.x, p.y, p.z / 2.5, 0, 2 * Math.PI, true);
             context.closePath();
             context.fill();
           },
