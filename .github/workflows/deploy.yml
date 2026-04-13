@@ -11,10 +11,10 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
       # 使用nodeJs
-      - name: Use Node.js 18
+      - name: Use Node.js 24
         uses: actions/setup-node@v3
         with:
-          node-version: "18.x"
+          node-version: "24.x"
       # 打包构建项目
       - name: Build Project
         run: |
