@@ -3,16 +3,45 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>致杨文利同学的专属爱心~~</title>
+    <title>赠与杨文利小朋友 - 描边动画特效</title>
     <style>
       body {
         display: flex;
         justify-content: center;
         align-items: center;
+        flex-direction: column;
         height: 100vh;
         overflow: hidden;
-        background-color: #000;
+        background: linear-gradient(
+          135deg,
+          #0a0a0a 0%,
+          #1a1a2e 50%,
+          #0d0d1a 100%
+        );
+        font-family:
+          "Microsoft YaHei", "PingFang SC", "Helvetica Neue", "华文楷书",
+          "KaiTi", cursive, Arial, sans-serif;
+        position: relative;
       }
+
+      /* 装饰性星光点点 */
+      body::before {
+        content: "";
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background-image: radial-gradient(white 1px, transparent 1px);
+        background-size: 50px 50px;
+        opacity: 0.1;
+        pointer-events: none;
+      }
+
+      /* 心形描边动画 */
+      .heart {
+        margin-bottom: 20px;
+        filter: drop-shadow(0 0 10px rgba(255, 51, 102, 0.3));
+      }
+
       .heart #line {
         fill: none;
         stroke: #e00000;
@@ -25,6 +54,7 @@
         stroke-dashoffset: 1;
         animation: dash 3s linear infinite;
       }
+
       .heart #point {
         fill: none;
         stroke: #f00000;
@@ -37,6 +67,7 @@
         stroke-dashoffset: 1;
         animation: dash 3s linear infinite;
       }
+
       @keyframes dash {
         0% {
           stroke-dashoffset: 1;
@@ -48,9 +79,230 @@
           stroke-dashoffset: 0;
         }
       }
+
+      /* 文字容器 */
+      .text-container {
+        text-align: center;
+        margin-top: 20px;
+      }
+
+      /* 赠与文字 - 手写风格 */
+      .gift-to {
+        font-size: 24px;
+        color: #ff99aa;
+        letter-spacing: 4px;
+        margin-bottom: 15px;
+        opacity: 0;
+        animation: fadeInDown 0.6s ease-out 0.3s forwards;
+        position: relative;
+        display: inline-block;
+      }
+
+      .gift-to::before,
+      .gift-to::after {
+        content: "✨";
+        opacity: 0;
+        animation: twinkle 1.5s ease-in-out 0.8s infinite;
+      }
+
+      .gift-to::before {
+        margin-right: 10px;
+      }
+
+      .gift-to::after {
+        margin-left: 10px;
+      }
+
+      /* 主标题 - 描边动画文字 */
+      .stroke-text {
+        font-size: 56px;
+        font-weight: bold;
+        letter-spacing: 6px;
+        background: linear-gradient(135deg, #ff6b6b, #ff3366, #ff6699);
+        background-size: 200% 200%;
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        position: relative;
+        display: inline-block;
+        animation:
+          textGlow 2s ease-in-out infinite,
+          gradientShift 3s ease infinite;
+      }
+
+      /* 文字描边效果 */
+      .stroke-text::before {
+        content: "杨 文 利 小 朋 友";
+        position: absolute;
+        left: 0;
+        top: 0;
+        font-size: 56px;
+        font-weight: bold;
+        letter-spacing: 6px;
+        -webkit-text-stroke: 3px #ff3366;
+        color: transparent;
+        z-index: -1;
+        animation: strokePulse 2s ease-in-out infinite;
+      }
+
+      /* 副标题 */
+      .subtitle {
+        margin-top: 20px;
+        font-size: 18px;
+        color: rgba(255, 255, 255, 0.8);
+        letter-spacing: 3px;
+        opacity: 0;
+        animation: fadeInUp 0.8s ease-out 0.6s forwards;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+      }
+
+      /* 祝福语 */
+      .blessing {
+        margin-top: 30px;
+        font-size: 16px;
+        color: rgba(255, 200, 220, 0.7);
+        letter-spacing: 2px;
+        line-height: 1.8;
+        opacity: 0;
+        animation: fadeInUp 0.8s ease-out 0.9s forwards;
+        border-top: 1px solid rgba(255, 51, 102, 0.3);
+        padding-top: 20px;
+        display: inline-block;
+      }
+
+      .blessing span {
+        display: inline-block;
+        margin: 0 8px;
+        animation: float 3s ease-in-out infinite;
+      }
+
+      /* 动画关键帧 */
+      @keyframes textGlow {
+        0%,
+        100% {
+          text-shadow: 0 0 10px rgba(255, 51, 102, 0.3);
+        }
+        50% {
+          text-shadow: 0 0 25px rgba(255, 51, 102, 0.6);
+        }
+      }
+
+      @keyframes strokePulse {
+        0%,
+        100% {
+          -webkit-text-stroke: 3px #ff3366;
+          opacity: 0.7;
+        }
+        50% {
+          -webkit-text-stroke: 5px #ff6699;
+          opacity: 1;
+        }
+      }
+
+      @keyframes gradientShift {
+        0% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+        100% {
+          background-position: 0% 50%;
+        }
+      }
+
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes fadeInDown {
+        from {
+          opacity: 0;
+          transform: translateY(-20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes twinkle {
+        0%,
+        100% {
+          opacity: 0;
+        }
+        50% {
+          opacity: 1;
+        }
+      }
+
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0px);
+        }
+        50% {
+          transform: translateY(-5px);
+        }
+      }
+
+      /* 心形小装饰 */
+      .floating-hearts {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        font-size: 20px;
+        opacity: 0.5;
+        animation: floatHeart 2s ease-in-out infinite;
+      }
+
+      @keyframes floatHeart {
+        0%,
+        100% {
+          transform: translateY(0) rotate(0deg);
+        }
+        50% {
+          transform: translateY(-10px) rotate(5deg);
+        }
+      }
+
+      /* 响应式设计 */
+      @media (max-width: 768px) {
+        .stroke-text,
+        .stroke-text::before {
+          font-size: 32px;
+          letter-spacing: 3px;
+        }
+        .gift-to {
+          font-size: 18px;
+        }
+        .subtitle {
+          font-size: 14px;
+          flex-direction: column;
+          gap: 8px;
+        }
+        .blessing {
+          font-size: 13px;
+          padding: 15px;
+        }
+        .heart {
+          transform: scale(0.8);
+        }
+      }
     </style>
   </head>
   <body>
+    <!-- 心形描边动画 -->
     <svg
       class="heart"
       viewBox="-5 -5 278 56"
@@ -58,7 +310,11 @@
       id="svg5"
       xmlns="http://www.w3.org/2000/svg"
     >
-      <filter><feGaussianBlur stdDeviation="1.6"></feGaussianBlur></filter>
+      <defs>
+        <filter id="blur">
+          <feGaussianBlur stdDeviation="1.6"></feGaussianBlur>
+        </filter>
+      </defs>
       <g transform="translate(29.1 -127.42)" id="layer1">
         <path
           pathLength="1"
@@ -75,5 +331,57 @@
         ></path>
       </g>
     </svg>
+
+    <!-- 文字内容 -->
+    <div class="text-container">
+      <!-- 赠与前缀 -->
+      <div class="gift-to">✨ 赠 与 ✨</div>
+
+      <!-- 主标题 - 杨文利小朋友 -->
+      <div class="stroke-text">杨 文 利 小 朋 友</div>
+
+      <!-- 副标题装饰 -->
+      <div class="subtitle">
+        <svg
+          width="16"
+          height="16"
+          viewBox="0 0 24 24"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M12 21.35L10.55 20.03C5.4 15.36 2 12.27 2 8.5 2 5.41 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.08C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.41 22 8.5c0 3.77-3.4 6.86-8.55 11.54L12 21.35z"
+            fill="#ff3366"
+            stroke="#ff6699"
+            stroke-width="1"
+          />
+        </svg>
+        愿 你 心 有 暖 阳
+        <svg
+          width="16"
+          height="16"
+          viewBox="0 0 24 24"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M12 21.35L10.55 20.03C5.4 15.36 2 12.27 2 8.5 2 5.41 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.08C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.41 22 8.5c0 3.77-3.4 6.86-8.55 11.54L12 21.35z"
+            fill="#ff3366"
+            stroke="#ff6699"
+            stroke-width="1"
+          />
+        </svg>
+      </div>
+
+      <!-- 祝福语 -->
+      <div class="blessing">
+        <span>⭐</span> 愿每一天都充满阳光与欢笑 <span>⭐</span><br />
+        <span>🌸</span> 保持好奇，勇敢追梦 <span>🌸</span><br />
+        <span>🦋</span> 世界因你而更美好 <span>🦋</span>
+      </div>
+    </div>
+
+    <!-- 漂浮小心形装饰 -->
+    <div class="floating-hearts">💖</div>
   </body>
 </html>
